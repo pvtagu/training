@@ -1,0 +1,11 @@
+#Ant properties
+#Thu Sep 15 12:52:13 CEST 2016
+builddate=20160915 1252
+description=bookstorecockpits
+group.id=de.hybris.platform
+module.name=platform-module
+name=bookstorecockpits
+releasedate=20160914 1600
+vendor=hybris
+version=6.2.0.0-SNAPSHOT
+version.api=6.2.0
