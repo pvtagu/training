@@ -1,3 +1,3 @@
 # training
-hybris training
-on ecommerce
+Training on Hybris 6 for eCommerce
+
