@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 27-mar-2018 16.08.29                        ---
+ * --- Generated at 3-apr-2018 17.00.23                         ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;
@@ -125,7 +125,8 @@ public abstract class GeneratedApparelStyleVariantProduct extends VariantProduct
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>ApparelStyleVariantProduct.swatchColors</code> attribute.
-	 * @return the swatchColors - A normalized color mapping to a standardized front-end navigable name.
+	 * @return the swatchColors - A normalized color mapping to a standardized
+	 * 							front-end navigable name.
 	 */
 	public Set<EnumerationValue> getSwatchColors(final SessionContext ctx)
 	{
@@ -135,7 +136,8 @@ public abstract class GeneratedApparelStyleVariantProduct extends VariantProduct
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>ApparelStyleVariantProduct.swatchColors</code> attribute.
-	 * @return the swatchColors - A normalized color mapping to a standardized front-end navigable name.
+	 * @return the swatchColors - A normalized color mapping to a standardized
+	 * 							front-end navigable name.
 	 */
 	public Set<EnumerationValue> getSwatchColors()
 	{
@@ -144,7 +146,8 @@ public abstract class GeneratedApparelStyleVariantProduct extends VariantProduct
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>ApparelStyleVariantProduct.swatchColors</code> attribute. 
-	 * @param value the swatchColors - A normalized color mapping to a standardized front-end navigable name.
+	 * @param value the swatchColors - A normalized color mapping to a standardized
+	 * 							front-end navigable name.
 	 */
 	public void setSwatchColors(final SessionContext ctx, final Set<EnumerationValue> value)
 	{
@@ -153,7 +156,8 @@ public abstract class GeneratedApparelStyleVariantProduct extends VariantProduct
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>ApparelStyleVariantProduct.swatchColors</code> attribute. 
-	 * @param value the swatchColors - A normalized color mapping to a standardized front-end navigable name.
+	 * @param value the swatchColors - A normalized color mapping to a standardized
+	 * 							front-end navigable name.
 	 */
 	public void setSwatchColors(final Set<EnumerationValue> value)
 	{

@@ -51,6 +51,15 @@
 		</relation>
 
 		<!-- TODO exercise 2.2: add the relation definition below -->
+		<relation code="Book2AuthorRelation" generate="true" autocreate="true" localized="false">
+			<deployment table="Book2AuthorRel" typecode="12349" />
+			<sourceElement type="Book" qualifier="books" cardinality="many" >
+				<modifiers search="true" optional="true" />
+			</sourceElement>
+			<targetElement type="Customer" qualifier="authors" cardinality="many">
+				<modifiers search="true" optional="true" />
+			</targetElement>
+		</relation>
 
 	</relations>
 
@@ -105,9 +114,23 @@
 
 
 		<!-- TODO exercise 2.1: define Book itemtype below -->
+		<itemtype code="Book" extends="Product" autocreate="true" generate="true">
+			<description>Books Available in the Bookshop</description>
+			<attributes>
+				<attribute qualifier="edition" type="java.lang.String">
+					<description>Name of book edition</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
 
-
-
+				<attribute qualifier="publication" type="java.lang.Integer">
+					<description>Year of book publication</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+				  
 
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Represents user who rented book/magazine/newspaper
@@ -121,13 +144,13 @@
 
 				<attribute qualifier="rewardLevelStartDate" type="java.util.Date">
 					<description></description>
-					<modifiers optional="true" />
+					<modifiers optional="false" />
 					<persistence type="property" />
 				</attribute>
 
 				<attribute qualifier="expireDate" type="java.util.Date">
 					<description>Date when user account will expire</description>
-					<modifiers optional="true" />
+					<modifiers optional="false" />
 					<persistence type="property" />
 				</attribute>
 				<!-- dynamic attribute: Have a look! -->
@@ -137,7 +160,11 @@
 					<persistence type="dynamic" attributeHandler="pointsToNextLevelAttrHandler" />
 				</attribute>
 				<!-- TODO exercise 2.3: add the customer attribute below -->
-
+				<attribute qualifier="rewardStatusLevel" type="RewardStatusLevel">
+					<description>Status level for user</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
 			</attributes>
 
 		</itemtype>

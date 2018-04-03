@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 27-mar-2018 16.08.29                        ---
+ * --- Generated at 3-apr-2018 17.00.23                         ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.constants;
@@ -19,15 +19,45 @@ public class GeneratedBookstoreCoreConstants
 		public static final String APPARELPRODUCT = "ApparelProduct".intern();
 		public static final String APPARELSIZEVARIANTPRODUCT = "ApparelSizeVariantProduct".intern();
 		public static final String APPARELSTYLEVARIANTPRODUCT = "ApparelStyleVariantProduct".intern();
+		public static final String BOOK = "Book".intern();
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
+		public static final String RENTAL = "Rental".intern();
+		public static final String REWARDSTATUSLEVEL = "RewardStatusLevel".intern();
+		public static final String REWARDSTATUSLEVELCONFIGURATION = "RewardStatusLevelConfiguration".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();
 	}
 	public static class Attributes
 	{
-		// no constants defined.
+		public static class Customer
+		{
+			public static final String BOOKS = "books".intern();
+			public static final String EXPIREDATE = "expireDate".intern();
+			public static final String POINTS = "points".intern();
+			public static final String POINTSTONEXTLEVEL = "pointsToNextLevel".intern();
+			public static final String RENTALS = "rentals".intern();
+			public static final String REWARDLEVELSTARTDATE = "rewardLevelStartDate".intern();
+			public static final String REWARDSTATUSLEVEL = "rewardStatusLevel".intern();
+		}
+		public static class Product
+		{
+			public static final String ISBN10 = "ISBN10".intern();
+			public static final String ISBN13 = "ISBN13".intern();
+			public static final String LANGUAGE = "language".intern();
+			public static final String PUBLISHEDDATE = "publishedDate".intern();
+			public static final String PUBLISHER = "publisher".intern();
+			public static final String RENTABLE = "rentable".intern();
+			public static final String RENTALS = "rentals".intern();
+			public static final String REWARDPOINTS = "rewardPoints".intern();
+		}
 	}
 	public static class Enumerations
 	{
+		public static class RewardStatusLevel
+		{
+			public static final String BLUE = "BLUE".intern();
+			public static final String SILVER = "SILVER".intern();
+			public static final String GOLD = "GOLD".intern();
+		}
 		public static class SwatchColorEnum
 		{
 			public static final String BLACK = "BLACK".intern();
@@ -43,6 +73,12 @@ public class GeneratedBookstoreCoreConstants
 			public static final String WHITE = "WHITE".intern();
 			public static final String YELLOW = "YELLOW".intern();
 		}
+	}
+	public static class Relations
+	{
+		public static final String BOOK2AUTHORRELATION = "Book2AuthorRelation".intern();
+		public static final String RENTAL2CUSTOMERRELATION = "Rental2CustomerRelation".intern();
+		public static final String RENTAL2PRODUCTRELATION = "Rental2ProductRelation".intern();
 	}
 	
 	protected GeneratedBookstoreCoreConstants()
