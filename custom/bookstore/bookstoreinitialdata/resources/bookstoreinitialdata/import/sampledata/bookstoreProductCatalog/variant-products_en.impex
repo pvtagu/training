@@ -9,12 +9,15 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Units
+# ImpEx for Importing Variant Products
+# English Localisation
 
 # Macros / Replacement Parameter definitions
-$classificationCatalog=__CLASSIFICATION_CATALOG_NAME__
+$productCatalog=__PRODUCT_CATALOG_NAME__
 
-$systemVersion=systemVersion(catalog(id[default='$classificationCatalog']),version[default='1.0'])
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
+# Language
+$lang=en
 
-INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;$systemVersion[unique=true]
+UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];ApparelStyleVariantProduct.style[lang=$lang];ApparelSizeVariantProduct.size[lang=$lang]

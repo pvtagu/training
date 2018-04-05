@@ -13,16 +13,17 @@
 # Import the Product Catalog and Classification Catalog
 #
 
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$classificationCatalog=__CLASSIFICATION_CATALOG_NAME__
+$productCatalog=bookstoreProductCatalog
+$classificationCatalog=BookstoreClassification
+$systemVersion=1.0;
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=ja,en,de,zh
+$languages=en
 
 # Product catalog
 INSERT_UPDATE Catalog;id[unique=true]
 ;$productCatalog
 
-# Classification catalog
+# Bookstore Classification catalog
 INSERT_UPDATE ClassificationSystem;id[unique=true]
 ;$classificationCatalog
 
@@ -33,8 +34,9 @@ INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];activ
 
 # Insert Classifications System Version
 INSERT_UPDATE ClassificationSystemVersion;catalog(id)[unique=true];version[unique=true];active;inclPacking[virtual=true,default=true];inclDuty[virtual=true,default=true];inclFreight[virtual=true,default=true];inclAssurance[virtual=true,default=true]
-;$classificationCatalog;1.0;true
+;$classificationCatalog;$systemVersion;true
+
 
 # Create default tax row for all products in product catalog
-INSERT_UPDATE TaxRow;$catalogVersion;tax(code)[unique=true];pg(code)[unique=true];ug(code)[unique=true]
-;;jp-vat-full;jp-vat-full;jp-taxes
+INSERT_UPDATE TaxRow;$catalogVersion;tax(code)[unique=true];pg(code)[unique=true]
+;;de-vat-full;eu-vat-full

@@ -9,17 +9,20 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-#
-# Import the Content Catalog
-#
-$contentCatalog=__CONTENT_CATALOG_NAME__
-$languages=ja,en,de,zh
+# ImpEx for Importing Units
+# English Localisation
 
-# Content catalog for CMS contents
-INSERT_UPDATE ContentCatalog;id[unique=true]
-;$contentCatalog
+# Macros / Replacement Parameter definitions
+$systemName=BookstoreClassification;
+$systemVersion=1.0;
+$classficationCatalog=catalogVersion(catalog(id[default=$systemName]),version[default=$systemVersion]);
 
-# Catalog versions for content catalogs
-INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode)
-;$contentCatalog;Staged;false;$languages
-;$contentCatalog;Online;true;$languages
+$sysVer=systemVersion(catalog(id[default=$systemName]),version[default=$systemVersion])[unique=true];
+
+# Language
+$lang=en
+
+UPDATE ClassificationAttributeUnit;code[unique=true];name[lang=$lang];$sysVer
+;scheme;Scheme
+;pages;Pages
+

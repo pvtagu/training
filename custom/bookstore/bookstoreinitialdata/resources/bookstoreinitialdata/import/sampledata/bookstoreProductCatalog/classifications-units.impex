@@ -9,12 +9,17 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-#
-# Import the Content Catalog
-#
+# ImpEx for Importing Units
 
-# Language
-$lang=en
+# Macros / Replacement Parameter definitions
+$systemName=BookstoreClassification;
+$systemVersion=1.0;
 
-# Create Content Catalog
-UPDATE ContentCatalog;id[unique=true];name[lang=$lang]
+
+$classSystemVersion=systemVersion(catalog(id[default=$systemName]),version[default=$systemVersion]);
+
+
+# Insert Classification Units
+INSERT_UPDATE ClassificationAttributeUnit;$classSystemVersion;code[unique=true];unitType;symbol
+;;scheme;String;scheme
+;;pages;Number;pages

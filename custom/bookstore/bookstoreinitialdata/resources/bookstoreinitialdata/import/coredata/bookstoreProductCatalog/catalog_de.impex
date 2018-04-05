@@ -9,16 +9,12 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Categories
-
-# Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$productCatalogName=__PRODUCT_CATALOG_FULL_NAME__
-
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+#
+# Import the Product Catalog and Classification Catalog
+#
 
 # Language
-$lang=en
+$lang=de
 
-# Create Categories
-UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+# Create Catalog
+UPDATE Catalog;id[unique=true];name[lang=$lang]

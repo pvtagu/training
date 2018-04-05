@@ -2,27 +2,37 @@
 <!--
  [y] hybris Platform
 
- Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ Copyright (c) 2000-2014 hybris AG
  All rights reserved.
 
- This software is the confidential and proprietary information of SAP
+ This software is the confidential and proprietary information of hybris
  ("Confidential Information"). You shall not disclose such Confidential
  Information and shall use it only in accordance with the terms of the
- license agreement you entered into with SAP.
+ license agreement you entered into with hybris.
+
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
 
 	<extension abstractclassprefix="Generated" classprefix="BookstoreCore" managername="BookstoreCoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="bookstorecore">
 
-		<!-- you should add all required extensions to this list, except platform 
+		<!-- you should add all required extensions to this list, except platform
 			extensions which are automatically required -->
+		<requires-extension name="acceleratorservices"/>
 		<requires-extension name="acceleratorcms"/>
-		<requires-extension name="solrserver"/>
+		<requires-extension name="bookstorefulfilmentprocess"/>
+		<requires-extension name="hmc"/>
+		<requires-extension name="backoffice"/>
 
 		<coremodule generated="true" manager="my.bookstore.core.jalo.BookstoreCoreManager" packageroot="my.bookstore.core"/>
 
-		
-		
+		<hmcmodule extensionclassname="my.bookstore.core.hmc.BookstoreCoreHMCExtension"/>
+
+		<!-- The following tag is included for the TrainingLabsTool to provide required configuration for the backoffice UI.
+		     This is not the recommended way to do this; instead, we should have created a bookstorebackoffice extension.
+		     However, since a later exercise has students create one, we didn't want to do so in this exercise; instead,
+		     we made the bookstorecore extension a backoffice-module. We don't recommend this approach in your project.
+		     Note that we require the backoffice extension only to support the meta tag below. -->
 		<meta key="backoffice-module" value="true"/>
+
 	</extension>
 
 </extensioninfo>
