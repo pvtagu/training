@@ -1,0 +1,51 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+# All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products
+
+# Macros / Replacement Parameter definitions
+$productCatalog=bookstoreProductCatalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$approved=approvalStatus(code)[default='approved']
+$lang=en
+
+
+### TODO exercise 4.1 :
+# 1. author:
+# uid:Charlotte T. Bron
+# name:Charlotte T. Bron
+
+# 2. author:
+# uid:Dale Carnaby
+# name:Dale Carnaby
+
+#INSERT_UPDATE User;...
+
+### TODO exercise 4.2 :
+# code:1013742419
+# name:Withering Heights
+# categories: drama,audioCD
+# unit: pieces
+# approved: $approved
+# catalog version: staged
+# rentable: true
+# reward points: 12
+# ISBN10: 1013742419
+# ISBN13:3331013742419
+# language: $lang
+# publisher: hybris Classics Library
+# authors: authors you added in exercise 4.1
+
+# Insert Book
+INSERT_UPDATE Book;code[unique=true];name[lang=$lang];$supercategories;unit(code)[default=pieces];$approved;$catalogVersion;rentable;rewardPoints;ISBN10;ISBN13;language;publisher
+;8942944779;The Strange Case of the Disappearing hybris Website;mystery,audioCD;;;;true;10;8942944779;3338942944779;$lang;Pinniped
