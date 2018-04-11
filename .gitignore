@@ -150,3 +150,9 @@ org.springframework.ide.eclipse.core.springbuilder (1).launch
 custom/formconverter
 #roles/dev/base/config/solr/instances/default/hsperfdata_mcolombo/
 config/solr/instances/default/hsperfdata_pvtagu/*
+
+custom/bookstore/bookstorecockpits/*
+custom/bookstore/bookstorecore/gensrc/*
+custom/bookstore/bookstorefacades/gensrc/*
+custom/bookstore/bookstorefulfilmentprocess/gensrc/*
+custom/bookstore/bookstoreinitialdata/gensrc/*
