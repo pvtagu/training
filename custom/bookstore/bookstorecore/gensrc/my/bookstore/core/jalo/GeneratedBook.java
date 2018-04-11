@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 5-apr-2018 14.34.32                         ---
+ * --- Generated at 11-apr-2018 15.30.37                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;
@@ -9,7 +9,7 @@ package my.bookstore.core.jalo;
 import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.product.Product;
-import de.hybris.platform.jalo.user.Customer;
+import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.util.Utilities;
 import java.util.Collection;
 import java.util.Collections;
@@ -53,13 +53,13 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Getter of the <code>Book.authors</code> attribute.
 	 * @return the authors
 	 */
-	public Collection<Customer> getAuthors(final SessionContext ctx)
+	public Collection<User> getAuthors(final SessionContext ctx)
 	{
-		final List<Customer> items = getLinkedItems( 
+		final List<User> items = getLinkedItems( 
 			ctx,
 			true,
 			BookstoreCoreConstants.Relations.BOOK2AUTHORRELATION,
-			"Customer",
+			"User",
 			null,
 			false,
 			false
@@ -71,7 +71,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Getter of the <code>Book.authors</code> attribute.
 	 * @return the authors
 	 */
-	public Collection<Customer> getAuthors()
+	public Collection<User> getAuthors()
 	{
 		return getAuthors( getSession().getSessionContext() );
 	}
@@ -82,7 +82,7 @@ public abstract class GeneratedBook extends Product
 			ctx,
 			true,
 			BookstoreCoreConstants.Relations.BOOK2AUTHORRELATION,
-			"Customer",
+			"User",
 			null
 		);
 	}
@@ -96,7 +96,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Setter of the <code>Book.authors</code> attribute. 
 	 * @param value the authors
 	 */
-	public void setAuthors(final SessionContext ctx, final Collection<Customer> value)
+	public void setAuthors(final SessionContext ctx, final Collection<User> value)
 	{
 		setLinkedItems( 
 			ctx,
@@ -114,7 +114,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Setter of the <code>Book.authors</code> attribute. 
 	 * @param value the authors
 	 */
-	public void setAuthors(final Collection<Customer> value)
+	public void setAuthors(final Collection<User> value)
 	{
 		setAuthors( getSession().getSessionContext(), value );
 	}
@@ -123,7 +123,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Adds <code>value</code> to authors. 
 	 * @param value the item to add to authors
 	 */
-	public void addToAuthors(final SessionContext ctx, final Customer value)
+	public void addToAuthors(final SessionContext ctx, final User value)
 	{
 		addLinkedItems( 
 			ctx,
@@ -141,7 +141,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Adds <code>value</code> to authors. 
 	 * @param value the item to add to authors
 	 */
-	public void addToAuthors(final Customer value)
+	public void addToAuthors(final User value)
 	{
 		addToAuthors( getSession().getSessionContext(), value );
 	}
@@ -150,7 +150,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Removes <code>value</code> from authors. 
 	 * @param value the item to remove from authors
 	 */
-	public void removeFromAuthors(final SessionContext ctx, final Customer value)
+	public void removeFromAuthors(final SessionContext ctx, final User value)
 	{
 		removeLinkedItems( 
 			ctx,
@@ -168,7 +168,7 @@ public abstract class GeneratedBook extends Product
 	 * <i>Generated method</i> - Removes <code>value</code> from authors. 
 	 * @param value the item to remove from authors
 	 */
-	public void removeFromAuthors(final Customer value)
+	public void removeFromAuthors(final User value)
 	{
 		removeFromAuthors( getSession().getSessionContext(), value );
 	}

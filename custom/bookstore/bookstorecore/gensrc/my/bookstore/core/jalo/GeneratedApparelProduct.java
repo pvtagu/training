@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 5-apr-2018 14.34.32                         ---
+ * --- Generated at 11-apr-2018 15.30.37                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;

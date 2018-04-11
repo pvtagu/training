@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 5-apr-2018 14.34.32                         ---
+ * --- Generated at 11-apr-2018 15.30.37                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;
@@ -16,6 +16,7 @@ import de.hybris.platform.jalo.enumeration.EnumerationValue;
 import de.hybris.platform.jalo.extension.Extension;
 import de.hybris.platform.jalo.link.Link;
 import de.hybris.platform.jalo.product.Product;
+import de.hybris.platform.jalo.security.Principal;
 import de.hybris.platform.jalo.type.CollectionType;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
@@ -56,11 +57,6 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	true,
 	CollectionType.COLLECTION
 	);
-	/** Relation ordering override parameter constants for Book2AuthorRelation from ((bookstorecore))*/
-	protected static String BOOK2AUTHORRELATION_SRC_ORDERED = "relation.Book2AuthorRelation.source.ordered";
-	protected static String BOOK2AUTHORRELATION_TGT_ORDERED = "relation.Book2AuthorRelation.target.ordered";
-	/** Relation disable markmodifed parameter constants for Book2AuthorRelation from ((bookstorecore))*/
-	protected static String BOOK2AUTHORRELATION_MARKMODIFIED = "relation.Book2AuthorRelation.markmodified";
 	/**
 	* {@link OneToManyHandler} for handling 1:n RENTALS's relation attributes from 'many' side.
 	**/
@@ -73,6 +69,11 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	true,
 	CollectionType.COLLECTION
 	);
+	/** Relation ordering override parameter constants for Book2AuthorRelation from ((bookstorecore))*/
+	protected static String BOOK2AUTHORRELATION_SRC_ORDERED = "relation.Book2AuthorRelation.source.ordered";
+	protected static String BOOK2AUTHORRELATION_TGT_ORDERED = "relation.Book2AuthorRelation.target.ordered";
+	/** Relation disable markmodifed parameter constants for Book2AuthorRelation from ((bookstorecore))*/
+	protected static String BOOK2AUTHORRELATION_MARKMODIFIED = "relation.Book2AuthorRelation.markmodified";
 	protected static final Map<String, Map<String, AttributeMode>> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
@@ -107,10 +108,10 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Customer.books</code> attribute.
+	 * <i>Generated method</i> - Getter of the <code>User.books</code> attribute.
 	 * @return the books
 	 */
-	public Collection<Book> getBooks(final SessionContext ctx, final Customer item)
+	public Collection<Book> getBooks(final SessionContext ctx, final User item)
 	{
 		final List<Book> items = item.getLinkedItems( 
 			ctx,
@@ -125,15 +126,15 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Customer.books</code> attribute.
+	 * <i>Generated method</i> - Getter of the <code>User.books</code> attribute.
 	 * @return the books
 	 */
-	public Collection<Book> getBooks(final Customer item)
+	public Collection<Book> getBooks(final User item)
 	{
 		return getBooks( getSession().getSessionContext(), item );
 	}
 	
-	public long getBooksCount(final SessionContext ctx, final Customer item)
+	public long getBooksCount(final SessionContext ctx, final User item)
 	{
 		return item.getLinkedItemsCount(
 			ctx,
@@ -144,16 +145,16 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 		);
 	}
 	
-	public long getBooksCount(final Customer item)
+	public long getBooksCount(final User item)
 	{
 		return getBooksCount( getSession().getSessionContext(), item );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Customer.books</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>User.books</code> attribute. 
 	 * @param value the books
 	 */
-	public void setBooks(final SessionContext ctx, final Customer item, final Collection<Book> value)
+	public void setBooks(final SessionContext ctx, final User item, final Collection<Book> value)
 	{
 		item.setLinkedItems( 
 			ctx,
@@ -168,10 +169,10 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Customer.books</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>User.books</code> attribute. 
 	 * @param value the books
 	 */
-	public void setBooks(final Customer item, final Collection<Book> value)
+	public void setBooks(final User item, final Collection<Book> value)
 	{
 		setBooks( getSession().getSessionContext(), item, value );
 	}
@@ -180,7 +181,7 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	 * <i>Generated method</i> - Adds <code>value</code> to books. 
 	 * @param value the item to add to books
 	 */
-	public void addToBooks(final SessionContext ctx, final Customer item, final Book value)
+	public void addToBooks(final SessionContext ctx, final User item, final Book value)
 	{
 		item.addLinkedItems( 
 			ctx,
@@ -198,7 +199,7 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	 * <i>Generated method</i> - Adds <code>value</code> to books. 
 	 * @param value the item to add to books
 	 */
-	public void addToBooks(final Customer item, final Book value)
+	public void addToBooks(final User item, final Book value)
 	{
 		addToBooks( getSession().getSessionContext(), item, value );
 	}
@@ -207,7 +208,7 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	 * <i>Generated method</i> - Removes <code>value</code> from books. 
 	 * @param value the item to remove from books
 	 */
-	public void removeFromBooks(final SessionContext ctx, final Customer item, final Book value)
+	public void removeFromBooks(final SessionContext ctx, final User item, final Book value)
 	{
 		item.removeLinkedItems( 
 			ctx,
@@ -225,7 +226,7 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	 * <i>Generated method</i> - Removes <code>value</code> from books. 
 	 * @param value the item to remove from books
 	 */
-	public void removeFromBooks(final Customer item, final Book value)
+	public void removeFromBooks(final User item, final Book value)
 	{
 		removeFromBooks( getSession().getSessionContext(), item, value );
 	}

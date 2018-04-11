@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 5-apr-2018 14.34.32                         ---
+ * --- Generated at 11-apr-2018 15.30.37                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.constants;
@@ -30,7 +30,6 @@ public class GeneratedBookstoreCoreConstants
 	{
 		public static class Customer
 		{
-			public static final String BOOKS = "books".intern();
 			public static final String EXPIREDATE = "expireDate".intern();
 			public static final String POINTS = "points".intern();
 			public static final String POINTSTONEXTLEVEL = "pointsToNextLevel".intern();
@@ -48,6 +47,10 @@ public class GeneratedBookstoreCoreConstants
 			public static final String RENTABLE = "rentable".intern();
 			public static final String RENTALS = "rentals".intern();
 			public static final String REWARDPOINTS = "rewardPoints".intern();
+		}
+		public static class User
+		{
+			public static final String BOOKS = "books".intern();
 		}
 	}
 	public static class Enumerations
