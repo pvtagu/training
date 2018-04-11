@@ -56,7 +56,7 @@
 			<sourceElement type="Book" qualifier="books" cardinality="many" >
 				<modifiers search="true" optional="true" />
 			</sourceElement>
-			<targetElement type="Customer" qualifier="authors" cardinality="many">
+			<targetElement type="User" qualifier="authors" cardinality="many">
 				<modifiers search="true" optional="true" />
 			</targetElement>
 		</relation>
