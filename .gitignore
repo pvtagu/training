@@ -151,8 +151,10 @@ custom/formconverter
 #roles/dev/base/config/solr/instances/default/hsperfdata_mcolombo/
 config/solr/instances/default/hsperfdata_pvtagu/*
 
-custom/bookstore/bookstorecockpits/*
+custom/bookstore/bookstorecockpits/gensrc/*
 custom/bookstore/bookstorecore/gensrc/*
 custom/bookstore/bookstorefacades/gensrc/*
 custom/bookstore/bookstorefulfilmentprocess/gensrc/*
 custom/bookstore/bookstoreinitialdata/gensrc/*
+custom/bookstore/bookstorefulfilmentprocess/build.xml
+

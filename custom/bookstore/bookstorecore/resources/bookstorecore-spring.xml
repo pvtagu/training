@@ -12,14 +12,14 @@
 -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:annotation-config/>
+     <context:annotation-config/> 
 
 	<!-- Spring Integration -->
 	<import resource="classpath:/bookstorecore/integration/hot-folder-store-electronics-spring.xml"/>
@@ -28,27 +28,27 @@
 
 	<!-- SystemSetup for the BookstoreCore -->
 	<bean id="acceleratorCoreSystemSetup" class="my.bookstore.core.setup.CoreSystemSetup"
-		  parent="abstractCoreSystemSetup"/>
+	       parent="abstractCoreSystemSetup"/>
 
 	<!-- Solr field value providers -->
-
+	
 	<bean id="volumeAwareProductPriceValueProvider" class="my.bookstore.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
-		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
-		<property name="priceService" ref="priceService"/>
-		<property name="commonI18NService" ref="commonI18NService"/>
-		<property name="sessionService" ref="sessionService"/>
-		<property name="userService" ref="userService"/>
-		<property name="priceComparator" ref="volumePriceComparator"/>
-		<property name="catalogVersionService" ref="catalogVersionService"/>
-	</bean>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="userService" ref="userService"/>
+        <property name="priceComparator" ref="volumePriceComparator"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
 
-	<bean id="volumePriceComparator" class="my.bookstore.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
+    <bean id="volumePriceComparator" class="my.bookstore.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
 
-	<bean id="productVolumePricesProvider" class="my.bookstore.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
-		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
-		<property name="priceService" ref="priceService"/>
-	</bean>
-
+    <bean id="productVolumePricesProvider" class="my.bookstore.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+    </bean>
+	
 
 	<bean id="electronicsCategorySource" parent="abstractCategorySource">
 		<property name="rootCategory" value="1"/>
@@ -72,14 +72,14 @@
 	</bean>
 
 	<bean id="abstractCategoryCodeValueProvider" abstract="true"
-		  class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
-		  parent="abstractPropertyFieldValueProvider" >
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
 	<bean id="abstractCategoryNameValueProvider" abstract="true"
-		  class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider"
-		  parent="abstractPropertyFieldValueProvider" >
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
@@ -133,8 +133,8 @@
 	</bean>
 
 	<bean id="productUrlValueProvider"
-		  class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider"
-		  parent="abstractPropertyFieldValueProvider" >
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
 		<property name="urlResolver" ref="productModelUrlResolver"/>
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 		<property name="i18nService" ref="i18nService"/>
@@ -142,54 +142,54 @@
 	</bean>
 
 	<bean id="promotionCodeValueProvider"
-		  class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider"
-		  parent="abstractPropertyFieldValueProvider" >
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
 		<property name="promotionsService" ref="promotionsService"/>
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="promotionImageValueProvider"
-		  class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider"
-		  parent="abstractPropertyFieldValueProvider" >
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
 		<property name="promotionsService" ref="promotionsService"/>
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="colorFacetValueProvider"
-		  class="my.bookstore.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
-		  parent="abstractPropertyFieldValueProvider">
+	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
+	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="colorFacetDisplayNameProvider"
-		  class="my.bookstore.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
-	>
+	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
+	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
-
+	
 	<bean id="apparelPointOfServiceFacetDisplayNameProvider"
-		  class="my.bookstore.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
-	>
+	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
-
+	
 	<bean id="electronicsPointOfServiceFacetDisplayNameProvider"
-		  class="my.bookstore.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
-	>
+	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
 	<bean id="genderValueProvider"
-		  class="my.bookstore.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
-		  parent="abstractPropertyFieldValueProvider">
+	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
+	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="genderFacetDisplayNameProvider"
-		  class="my.bookstore.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
-	>
+	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
+	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
 		<property name="commonI18NService" ref="commonI18NService"/>
@@ -200,22 +200,22 @@
 		must be configured with a lookup method.
 	-->
 	<bean id="orderCancelledEventListener"
-		  class="my.bookstore.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="orderRefundEventListener"
-		  class="my.bookstore.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="customerRegistrationEventListener"
-		  class="my.bookstore.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="forgottenPasswordEventListener"
-		  class="my.bookstore.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
@@ -225,32 +225,32 @@
 		<property name="baseStoreService" ref="baseStoreService"/>
 	</bean>
 	<bean id="orderConfirmationEventListener"
-		  class="my.bookstore.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendDeliveryMessageEventListener"
-		  class="my.bookstore.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendReadyForPickupMessageEventListener"
-		  class="my.bookstore.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendOrderPartiallyCanceledMessageEventListener"
-		  class="my.bookstore.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendOrderPartiallyRefundedMessageEventListener"
-		  class="my.bookstore.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendNotPickedUpConsignmentCanceledMessageEventListener"
-		  class="my.bookstore.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="my.bookstore.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
@@ -262,60 +262,60 @@
 	<!-- Process resources definition -->
 
 	<bean id="customerRegistrationEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/customerRegistrationEmailProcess.xml"/>
 	</bean>
 	<bean id="forgottenPasswordEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/forgottenPasswordEmailProcess.xml"/>
 	</bean>
 	<bean id="orderConfirmationEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/orderConfirmationEmailProcess.xml"/>
 	</bean>
 	<bean id="sendDeliveryEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendDeliveryEmailProcess.xml"/>
 	</bean>
 	<bean id="sendReadyForPickupEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendReadyForPickupEmailProcess.xml"/>
 	</bean>
 	<bean id="sendOrderCancelledEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendOrderCancelledEmailProcess.xml"/>
 	</bean>
 	<bean id="sendOrderRefundEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendOrderRefundEmailProcess.xml"/>
 	</bean>
 	<bean id="sendOrderPartiallyCanceledEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendOrderPartiallyCanceledEmailProcess.xml"/>
 	</bean>
 	<bean id="sendOrderPartiallyRefundedEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendOrderPartiallyRefundedEmailProcess.xml"/>
 	</bean>
 	<bean id="sendNotPickedUpConsignmentCanceledEmailProcessDefinitionResource"
-		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
 		<property name="resource" value="classpath:/bookstorecore/processes/sendNotPickedUpConsignmentCanceledEmailProcess.xml"/>
 	</bean>
 
 	<!-- Actions -->
 	<bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
-		  abstract="true">
+	      abstract="true">
 		<property name="modelService" ref="modelService"/>
 		<property name="processParameterHelper" ref="processParameterHelper"/>
 	</bean>
 
 	<bean id="sendEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"
-		  parent="abstractAction">
+	       parent="abstractAction">
 		<property name="emailService" ref="emailService"/>
 	</bean>
 
 	<bean id="abstractGenerateEmailAction" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
-		  parent="abstractAction" abstract="true">
+	      parent="abstractAction" abstract="true">
 		<property name="modelService" ref="modelService"/>
 		<property name="cmsEmailPageService" ref="cmsEmailPageService"/>
 		<property name="contextResolutionStrategy" ref="processContextResolutionStrategy"/>
@@ -333,7 +333,7 @@
 	<bean id="generateOrderConfirmationEmail" parent="abstractGenerateEmailAction">
 		<property name="frontendTemplateName" value="OrderConfirmationEmailTemplate"/>
 	</bean>
-
+	
 	<bean id="generateDeliverySentEmail" parent="abstractGenerateEmailAction">
 		<property name="frontendTemplateName" value="DeliverySentEmailTemplate"/>
 	</bean>
@@ -341,11 +341,11 @@
 	<bean id="generateReadyForPickupEmail" parent="abstractGenerateEmailAction">
 		<property name="frontendTemplateName" value="ReadyForPickupEmailTemplate"/>
 	</bean>
-
+	
 	<bean id="generateOrderCancelledEmail" parent="abstractGenerateEmailAction">
 		<property name="frontendTemplateName" value="OrderCancelledEmailTemplate"/>
 	</bean>
-
+	
 	<bean id="generateOrderRefundEmail" parent="abstractGenerateEmailAction">
 		<property name="frontendTemplateName" value="OrderRefundEmailTemplate"/>
 	</bean>
@@ -361,21 +361,21 @@
 	</bean>
 
 	<bean id="removeSentEmail"
-		  class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"
-		  parent="abstractAction">
+	      class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"
+	      parent="abstractAction">
 		<property name="modelService" ref="modelService"/>
 	</bean>
 
 	<!-- Simple Suggestion Service -->
 	<alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
 	<bean id="defaultSimpleSuggestionService"
-		  class="my.bookstore.core.suggestion.impl.DefaultSimpleSuggestionService" >
+	      class="my.bookstore.core.suggestion.impl.DefaultSimpleSuggestionService" >
 		<property name="simpleSuggestionDao" ref="simpleSuggestionDao"/>
 	</bean>
 	<alias alias="simpleSuggestionDao" name="defaultSimpleSuggestionDao"/>
 	<bean id="defaultSimpleSuggestionDao"
-		  class="my.bookstore.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
-		  parent="abstractItemDao" >
+	      class="my.bookstore.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+	      parent="abstractItemDao" >
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
 
@@ -387,15 +387,15 @@
 
 
 	<!-- checkout flow configuration -->
-
+	
 	<bean id="pickUpInStoreCheckoutFlowStrategy" class="my.bookstore.core.checkout.flow.impl.PickUpInStoreCheckoutFlowStrategy" >
 		<property name="pickupStrategy" ref="pickupStrategy" />
 		<property name="defaultStrategy" ref="siteCheckoutFlowStrategy"/>
 		<property name="multiStepCheckoutFlowStrategy" ref="multiStepCheckoutFlowStrategy" />
-	</bean>
+	</bean>	
 
 	<bean id="siteCheckoutFlowStrategy"
-		  class="my.bookstore.core.checkout.flow.impl.SiteCheckoutFlowStrategy" >
+	      class="my.bookstore.core.checkout.flow.impl.SiteCheckoutFlowStrategy" >
 		<!-- This strategy looks up a strategy based on the current site UID -->
 		<property name="cmsSiteService" ref="cmsSiteService"/>
 		<property name="siteMappings">
@@ -411,7 +411,7 @@
 	</bean>
 
 	<bean id="newCustomerCheckoutFlowStrategy"
-		  class="my.bookstore.core.checkout.flow.impl.NewCustomerCheckoutFlowStrategy" >
+	      class="my.bookstore.core.checkout.flow.impl.NewCustomerCheckoutFlowStrategy" >
 		<!-- This strategy works out if the user has created any data -->
 		<property name="userService" ref="userService"/>
 		<property name="customerAccountService" ref="customerAccountService"/>
@@ -422,7 +422,7 @@
 	<!-- Product Reference Lookup Strategies-->
 	<alias name="apparelCrossSellingProductReferenceTargetStrategy" alias="crossSellingProductReferenceTargetStrategy"/>
 	<bean id="apparelCrossSellingProductReferenceTargetStrategy"
-		  parent="defaultCrossSellingProductReferenceTargetStrategy">
+	      parent="defaultCrossSellingProductReferenceTargetStrategy">
 		<property name="productReferenceTargetStrategies">
 			<list merge="true">
 				<ref bean="apparelSizeProductReferenceTargetStrategy"/>
@@ -431,20 +431,32 @@
 	</bean>
 
 	<bean id="apparelSizeProductReferenceTargetStrategy"
-		  class="my.bookstore.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
+	      class="my.bookstore.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="rootCategoryCode" value="categories"/>
 	</bean>
-
+	
 	<!-- bookstore specific configuration -->
-
-	<bean name="pointsToNextLevelAttrHandler"
-		  class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
+	
+		<bean name="pointsToNextLevelAttrHandler" 
+		      class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
 
 	<bean name="rewardStatusLevelConfigurationDao"
-		  class="de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao">
+		class="de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao">
 		<constructor-arg
-				value="#{T(my.bookstore.core.model.RewardStatusLevelConfigurationModel). _TYPECODE}" />
+			value="#{T(my.bookstore.core.model.RewardStatusLevelConfigurationModel). _TYPECODE}" />
 	</bean>
+
+
+	<alias alias="rentalDao" name="defaultRentalDao" />
+	<bean id="defaultRentalDao" class="my.bookstore.core.daos.impl.DefaultRentalDao" 
+	      parent="abstractItemDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<!-- TODO exercise 5.1 add bean definition below -->
+	<!-- <bean name="customerDao"> 
+		
+	</bean>-->
 
 </beans>

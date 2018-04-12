@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 11-apr-2018 15.42.46                        ---
+ * --- Generated at 12-apr-2018 9.22.24                         ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.cockpits.constants;
