@@ -45,9 +45,9 @@
 			<sourceElement type="Rental" qualifier="rentals" cardinality="many" />
 			<targetElement type="Customer" qualifier="customer" cardinality="one" />
 		</relation>
-		<relation code="Rental2ProductRelation" generate="true" localized="false">
+		<relation code="Rental2BookRelation" generate="true" localized="false">
 			<sourceElement type="Rental" qualifier="rentals" cardinality="many" />
-			<targetElement type="Product" qualifier="product" cardinality="one" />
+			<targetElement type="Book" qualifier="book" cardinality="one" />
 		</relation>
 
 		<!-- TODO exercise 2.2: add the relation definition below -->

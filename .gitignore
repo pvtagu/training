@@ -132,7 +132,7 @@ org.springframework.ide.eclipse.core.springbuilder (1).launch
 #ext-atddtests/
 #ext-backoffice/
 #ext-channel/
-#ext-cockpit/
+#ext-cockpit/ 
 #ext-commerce/
 #ext-content/
 #ext-data/
@@ -157,4 +157,10 @@ custom/bookstore/bookstorefacades/gensrc/*
 custom/bookstore/bookstorefulfilmentprocess/gensrc/*
 custom/bookstore/bookstoreinitialdata/gensrc/*
 custom/bookstore/bookstorefulfilmentprocess/build.xml
+
+custom/bookstore/bookstoreinitialdata/gensrc/
+custom/bookstore/bookstorecockpits/gensrc/
+custom/bookstore/bookstorecore/gensrc/
+custom/bookstore/bookstorefacades/gensrc/
+custom/bookstore/bookstorefulfilmentprocess/gensrc/
 

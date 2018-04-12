@@ -455,8 +455,9 @@
 	</bean>
 
 	<!-- TODO exercise 5.1 add bean definition below -->
-	<!-- <bean name="customerDao"> 
-		
-	</bean>-->
+	<bean name="customerDao"
+		  parent="rewardStatusLevelConfigurationDao"
+		  class="my.bookstore.core.daos.impl.CustomerDao">
+	</bean>
 
 </beans>

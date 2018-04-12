@@ -2,7 +2,9 @@ package my.bookstore.core.daos.impl;
 
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.jalo.flexiblesearch.FlexibleSearch;
 import de.hybris.platform.servicelayer.internal.dao.AbstractItemDao;
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -40,56 +42,42 @@ public class DefaultRentalDao extends AbstractItemDao implements RentalDao
 		cal.add(Calendar.DATE, 1);
 		final Date dayEnd = cal.getTime(); // dayEnd
 
-		/*
-		 * Now, your part of the implementation. Use the Flexible Search statement you created in exercise 5.2:
-		 *
-		 * SELECT ...
-		 *
-		 * Now implement it in Java:
-		 */
-
-		// ---------------------------------------------------------------------------
+		
 		// TODO exercise 5.3: Get the list of all the active rentals for this customer
-
-		return null; // Delete this line before updating code below
-
-		/*
-		 * final String queryString = "SELECT ...";
-		 * 
-		 * 
-		 * // 1. Compile a query from this string final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
-		 * 
-		 * // 2. Add the query parameters // ...
-		 * 
-		 * // 3. Execute! return getFlexibleSearchService().<RentalModel> search(query).getResult();
-		 */
+		
+		final String queryString = "SELECT {r.PK}"
+											+ "FROM {rental as r JOIN customer as c"
+											+ "on {r.customer} = {c.PK} JOIN book as b"
+											+ "on {r.book} = {b.PK}}"
+											+ "WHERE {c.uid} = ?customer AND"
+											+ "{r.startDate} < ?dayStart AND"
+											+ "{r.endDate} > ?dayEnd";
+		
+		FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
+		
+		fsq.addQueryParameter("customer", customer);
+		fsq.addQueryParameter("dayStart", dayStart);
+		fsq.addQueryParameter("dayEnd", dayEnd);
+		
+		return getFlexibleSearchService().<RentalModel> search(fsq).getResult();
 	}
 
 	@Override
 	public List<BookModel> getMostRentedBooks(final int numberOfBooks)
 	{
 
-		/*
-		 * Use the Flexible Search statement you created in exercise 5.4:
-		 *
-		 * SELECT ...
-		 */
-
-		// ----------------------------------------------
 		// TODO exercise 5.5: Get the 5 most rented books
-
-		return null; // Delete this line before updating code below
-
-		/*
-		 * 
-		 * final String queryString = "SELECT ...";
-		 * 
-		 * // 1. Compile a query from this string final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
-		 * 
-		 * // 2. Add the query parameter // ...
-		 * 
-		 * // 3. Execute final SearchResult<BookModel> books = getFlexibleSearchService().search(query); return
-		 * books.getResult();
-		 */
+		
+		final String queryString = "SELECT TOP ?numberOfBooks {b.PK}"
+											+ "FROM {rental as r JOIN book as b on "
+											+ "{r.book} = {b.PK}}"
+											+ "GROUP BY {b.PK}"
+											+ "ORDER BY Count(*) DESC";
+		
+		FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
+		
+		fsq.addQueryParameter("numberOfBooks", Integer.valueOf(numberOfBooks));
+		
+		return getFlexibleSearchService().<BookModel> search(fsq).getResult();
 	}
 }

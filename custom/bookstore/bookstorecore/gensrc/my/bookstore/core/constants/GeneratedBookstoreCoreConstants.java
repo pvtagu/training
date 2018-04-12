@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 12-apr-2018 9.22.24                         ---
+ * --- Generated at 12-apr-2018 15.56.09                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.constants;
@@ -45,7 +45,6 @@ public class GeneratedBookstoreCoreConstants
 			public static final String PUBLISHEDDATE = "publishedDate".intern();
 			public static final String PUBLISHER = "publisher".intern();
 			public static final String RENTABLE = "rentable".intern();
-			public static final String RENTALS = "rentals".intern();
 			public static final String REWARDPOINTS = "rewardPoints".intern();
 		}
 		public static class User
@@ -80,8 +79,8 @@ public class GeneratedBookstoreCoreConstants
 	public static class Relations
 	{
 		public static final String BOOK2AUTHORRELATION = "Book2AuthorRelation".intern();
+		public static final String RENTAL2BOOKRELATION = "Rental2BookRelation".intern();
 		public static final String RENTAL2CUSTOMERRELATION = "Rental2CustomerRelation".intern();
-		public static final String RENTAL2PRODUCTRELATION = "Rental2ProductRelation".intern();
 	}
 	
 	protected GeneratedBookstoreCoreConstants()

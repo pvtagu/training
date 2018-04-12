@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 12-apr-2018 9.22.24                         ---
+ * --- Generated at 12-apr-2018 15.56.09                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;
@@ -11,7 +11,6 @@ import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.JaloBusinessException;
 import de.hybris.platform.jalo.SessionContext;
-import de.hybris.platform.jalo.product.Product;
 import de.hybris.platform.jalo.type.CollectionType;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.user.Customer;
@@ -21,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import my.bookstore.core.constants.BookstoreCoreConstants;
+import my.bookstore.core.jalo.Book;
 
 /**
  * Generated class for type {@link de.hybris.platform.jalo.GenericItem Rental}.
@@ -36,8 +36,8 @@ public abstract class GeneratedRental extends GenericItem
 	public static final String ENDDATE = "endDate";
 	/** Qualifier of the <code>Rental.customer</code> attribute **/
 	public static final String CUSTOMER = "customer";
-	/** Qualifier of the <code>Rental.product</code> attribute **/
-	public static final String PRODUCT = "product";
+	/** Qualifier of the <code>Rental.book</code> attribute **/
+	public static final String BOOK = "book";
 	/**
 	* {@link BidirectionalOneToManyHandler} for handling 1:n CUSTOMER's relation attributes from 'one' side.
 	**/
@@ -51,12 +51,12 @@ public abstract class GeneratedRental extends GenericItem
 	CollectionType.COLLECTION
 	);
 	/**
-	* {@link BidirectionalOneToManyHandler} for handling 1:n PRODUCT's relation attributes from 'one' side.
+	* {@link BidirectionalOneToManyHandler} for handling 1:n BOOK's relation attributes from 'one' side.
 	**/
-	protected static final BidirectionalOneToManyHandler<GeneratedRental> PRODUCTHANDLER = new BidirectionalOneToManyHandler<GeneratedRental>(
+	protected static final BidirectionalOneToManyHandler<GeneratedRental> BOOKHANDLER = new BidirectionalOneToManyHandler<GeneratedRental>(
 	BookstoreCoreConstants.TC.RENTAL,
 	false,
-	"product",
+	"book",
 	null,
 	false,
 	true,
@@ -70,7 +70,7 @@ public abstract class GeneratedRental extends GenericItem
 		tmp.put(STARTDATE, AttributeMode.INITIAL);
 		tmp.put(ENDDATE, AttributeMode.INITIAL);
 		tmp.put(CUSTOMER, AttributeMode.INITIAL);
-		tmp.put(PRODUCT, AttributeMode.INITIAL);
+		tmp.put(BOOK, AttributeMode.INITIAL);
 		DEFAULT_INITIAL_ATTRIBUTES = Collections.unmodifiableMap(tmp);
 	}
 	@Override
@@ -79,11 +79,47 @@ public abstract class GeneratedRental extends GenericItem
 		return DEFAULT_INITIAL_ATTRIBUTES;
 	}
 	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Rental.book</code> attribute.
+	 * @return the book
+	 */
+	public Book getBook(final SessionContext ctx)
+	{
+		return (Book)getProperty( ctx, BOOK);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Rental.book</code> attribute.
+	 * @return the book
+	 */
+	public Book getBook()
+	{
+		return getBook( getSession().getSessionContext() );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Rental.book</code> attribute. 
+	 * @param value the book
+	 */
+	public void setBook(final SessionContext ctx, final Book value)
+	{
+		BOOKHANDLER.addValue( ctx, value, this  );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Rental.book</code> attribute. 
+	 * @param value the book
+	 */
+	public void setBook(final Book value)
+	{
+		setBook( getSession().getSessionContext(), value );
+	}
+	
 	@Override
 	protected Item createItem(final SessionContext ctx, final ComposedType type, final ItemAttributeMap allAttributes) throws JaloBusinessException
 	{
 		CUSTOMERHANDLER.newInstance(ctx, allAttributes);
-		PRODUCTHANDLER.newInstance(ctx, allAttributes);
+		BOOKHANDLER.newInstance(ctx, allAttributes);
 		return super.createItem( ctx, type, allAttributes );
 	}
 	
@@ -157,42 +193,6 @@ public abstract class GeneratedRental extends GenericItem
 	public void setEndDate(final Date value)
 	{
 		setEndDate( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Rental.product</code> attribute.
-	 * @return the product
-	 */
-	public Product getProduct(final SessionContext ctx)
-	{
-		return (Product)getProperty( ctx, PRODUCT);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Rental.product</code> attribute.
-	 * @return the product
-	 */
-	public Product getProduct()
-	{
-		return getProduct( getSession().getSessionContext() );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Rental.product</code> attribute. 
-	 * @param value the product
-	 */
-	public void setProduct(final SessionContext ctx, final Product value)
-	{
-		PRODUCTHANDLER.addValue( ctx, value, this  );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Rental.product</code> attribute. 
-	 * @param value the product
-	 */
-	public void setProduct(final Product value)
-	{
-		setProduct( getSession().getSessionContext(), value );
 	}
 	
 	/**

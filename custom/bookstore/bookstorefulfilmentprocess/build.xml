@@ -11,7 +11,7 @@
   ~ terms of the license agreement you entered into with SAP Hybris.
   -->
 
-<project name="acceleratorcms" default="all">
+<project name="bookstorefulfilmentprocess" default="all">
 	<property file="platformhome.properties" />
 
 	<!-- next line is only for eclipse to get rid of warnings -->

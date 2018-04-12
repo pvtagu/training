@@ -123,7 +123,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		);
 	
 		createRelationType(
-			"Rental2ProductRelation",
+			"Rental2BookRelation",
 			null,
 			true
 		);
@@ -242,7 +242,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		);
 	
 		createRelationAttributes(
-			"Rental2ProductRelation", 
+			"Rental2BookRelation", 
 			false, 
 
 			"rentals", 
@@ -252,8 +252,8 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			true,
 			false,
 			CollectionType.COLLECTION,
-			"product", 
-			"Product", 
+			"book", 
+			"Book", 
 			true,
 			de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG, 
 			false,
@@ -767,13 +767,13 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 	
 		single_setRelAttributeProperties_Rental2CustomerRelation_source();
 	
-		single_setRelAttributeProperties_Rental2ProductRelation_source();
+		single_setRelAttributeProperties_Rental2BookRelation_source();
 	
 		single_setRelAttributeProperties_Book2AuthorRelation_source();
 	
 		single_setRelAttributeProperties_Rental2CustomerRelation_target();
 	
-		single_setRelAttributeProperties_Rental2ProductRelation_target();
+		single_setRelAttributeProperties_Rental2BookRelation_target();
 	
 		single_setRelAttributeProperties_Book2AuthorRelation_target();
 	
@@ -793,14 +793,14 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		);
 	
 		connectRelation(
-			"Rental2ProductRelation", 
+			"Rental2BookRelation", 
 			false, 
 			"rentals", 
 			"Rental", 
 			true,
 			de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG, 
-			"product", 
-			"Product", 
+			"book", 
+			"Book", 
 			true,
 			de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG, 
 			true,
@@ -1631,14 +1631,14 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 									);
 								}
 							
-								public void single_setRelAttributeProperties_Rental2ProductRelation_source() throws JaloBusinessException
+								public void single_setRelAttributeProperties_Rental2BookRelation_source() throws JaloBusinessException
 								{
 									
 									Map customPropsMap = new HashMap();
 									
 
 									setAttributeProperties(
-										"Product", 
+										"Book", 
 										"rentals",
 										false, 
 										null,
@@ -1652,7 +1652,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 									);
 								}
 							
-								public void single_setRelAttributeProperties_Rental2ProductRelation_target() throws JaloBusinessException
+								public void single_setRelAttributeProperties_Rental2BookRelation_target() throws JaloBusinessException
 								{
 									
 									Map customPropsMap = new HashMap();
@@ -1660,7 +1660,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 
 									setAttributeProperties(
 										"Rental", 
-										"product",
+										"book",
 										false, 
 										null,
 										null,
