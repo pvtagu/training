@@ -42,7 +42,6 @@ public class DefaultRentalDao extends AbstractItemDao implements RentalDao
 		cal.add(Calendar.DATE, 1);
 		final Date dayEnd = cal.getTime(); // dayEnd
 
-		
 		// TODO exercise 5.3: Get the list of all the active rentals for this customer
 		
 		final String queryString = "SELECT {r.PK}"
@@ -68,10 +67,9 @@ public class DefaultRentalDao extends AbstractItemDao implements RentalDao
 
 		// TODO exercise 5.5: Get the 5 most rented books
 		
-		final String queryString = "SELECT TOP ?numberOfBooks {b.PK}"
-											+ "FROM {rental as r JOIN book as b on "
-											+ "{r.book} = {b.PK}}"
-											+ "GROUP BY {b.PK}"
+		final String queryString = "SELECT TOP ?numberOfBooks {r.book}"
+											+ "FROM {rental as r}"
+											+ "GROUP BY {r.book}"
 											+ "ORDER BY Count(*) DESC";
 		
 		FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
