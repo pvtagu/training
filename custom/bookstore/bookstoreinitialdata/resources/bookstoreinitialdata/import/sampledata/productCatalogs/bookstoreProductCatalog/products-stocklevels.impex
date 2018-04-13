@@ -1,29 +1,108 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
-# All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
 # ImpEx for Importing Products Stock Levels and Warehouses
 
-# Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$productCatalogName=__PRODUCT_CATALOG_FULL_NAME__
-$vendor=__VENDOR_NAME__
-
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$productCatalog=bookstoreProductCatalog
+$productCV=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$onlineProductCV=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$vendor=bookstore
 
 
+### create stock levels for book
 INSERT_UPDATE Vendor;code[unique=true]
-#;$vendor
+;$vendor
 
 INSERT_UPDATE Warehouse;code[unique=true];vendor(code);default[default=true]
+;warehouse_bookstore;$vendor
 
 INSERT_UPDATE StockLevel;available;warehouse(code)[unique=true];inStockStatus(code);maxPreOrder;maxStockLevelHistoryCount;overSelling;preOrder;productCode[unique=true];reserved
+;32;warehouse_bookstore;forceInStock;0;0;0;0;9439522259;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;2121888594;0
+;52;warehouse_bookstore;forceInStock;0;0;0;0;1109070349;0
+;44;warehouse_bookstore;forceInStock;0;0;0;0;1178279359;0
+;18;warehouse_bookstore;forceInStock;0;0;0;0;1210424959;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1185574409;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1219543179;0
+;89;warehouse_bookstore;forceInStock;0;0;0;0;1259714799;0
+;76;warehouse_bookstore;forceInStock;0;0;0;0;1274653819;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1343905869;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1381254829;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1389235939;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1426604629;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1435356489;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1470296489;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1501089889;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1601185839;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1632331179;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1664834729;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1666594679;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1670875989;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1728482569;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1863258019;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1753481309;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1829089579;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;1984482769;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;2066436119;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;2100149369;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;2761735269;0
+;66;warehouse_bookstore;forceInStock;0;0;0;0;4032442169;0
+;19;warehouse_bookstore;forceInStock;0;0;0;0;4445843199;0
+;11;warehouse_bookstore;forceInStock;0;0;0;0;4482249629;0
+;12;warehouse_bookstore;forceInStock;0;0;0;0;4678255109;0
+;95;warehouse_bookstore;forceInStock;0;0;0;0;4265613039;0
+;93;warehouse_bookstore;forceInStock;0;0;0;0;4729720539;0
+;67;warehouse_bookstore;forceInStock;0;0;0;0;5536152009;0
+;34;warehouse_bookstore;forceInStock;0;0;0;0;5650539359;0
+;120;warehouse_bookstore;forceInStock;0;0;0;0;6824238759;0
+;98;warehouse_bookstore;forceInStock;0;0;0;0;6493374189;0
+;44;warehouse_bookstore;forceInStock;0;0;0;0;6265644009;0
+;78;warehouse_bookstore;forceInStock;0;0;0;0;7313785739;0
+;58;warehouse_bookstore;forceInStock;0;0;0;0;8423207609;0
+;190;warehouse_bookstore;forceInStock;0;0;0;0;8679478989;0
+;162;warehouse_bookstore;forceInStock;0;0;0;0;8685677009;0
+;162;warehouse_bookstore;forceInStock;0;0;0;0;1013742419;0
 
-UPDATE Product;code[unique=true];$catalogVersion;stockLevels(productCode,warehouse(code));vendors(code)
+UPDATE Product;code[unique=true];$productCV;stockLevels(productCode,warehouse(code));vendors(code)
+;9439522259;;9439522259:warehouse_bookstore;$vendor
+;2121888594;;2121888594:warehouse_bookstore;$vendor
+;1109070349;;1109070349:warehouse_bookstore;$vendor
+;1178279359;;1178279359:warehouse_bookstore;$vendor
+;1210424959;;1210424959:warehouse_bookstore;$vendor
+;1185574409;;1185574409:warehouse_bookstore;$vendor
+;1219543179;;1219543179:warehouse_bookstore;$vendor
+;1259714799;;1259714799:warehouse_bookstore;$vendor
+;1274653819;;1274653819:warehouse_bookstore;$vendor
+;1343905869;;1343905869:warehouse_bookstore;$vendor
+;1381254829;;1381254829:warehouse_bookstore;$vendor
+;1389235939;;1389235939:warehouse_bookstore;$vendor
+;1426604629;;1426604629:warehouse_bookstore;$vendor
+;1435356489;;1435356489:warehouse_bookstore;$vendor
+;1470296489;;1470296489:warehouse_bookstore;$vendor
+;1501089889;;1501089889:warehouse_bookstore;$vendor
+;1601185839;;1601185839:warehouse_bookstore;$vendor
+;1632331179;;1632331179:warehouse_bookstore;$vendor
+;1664834729;;1664834729:warehouse_bookstore;$vendor
+;1666594679;;1666594679:warehouse_bookstore;$vendor
+;1670875989;;1670875989:warehouse_bookstore;$vendor
+;1728482569;;1728482569:warehouse_bookstore;$vendor
+;1863258019;;1863258019:warehouse_bookstore;$vendor
+;1753481309;;1753481309:warehouse_bookstore;$vendor
+;1829089579;;1829089579:warehouse_bookstore;$vendor
+;1984482769;;1984482769:warehouse_bookstore;$vendor
+;2066436119;;2066436119:warehouse_bookstore;$vendor
+;2100149369;;2100149369:warehouse_bookstore;$vendor
+;2761735269;;2761735269:warehouse_bookstore;$vendor
+;4032442169;;4032442169:warehouse_bookstore;$vendor
+;4445843199;;4445843199:warehouse_bookstore;$vendor
+;4482249629;;4482249629:warehouse_bookstore;$vendor
+;4678255109;;4678255109:warehouse_bookstore;$vendor
+;4265613039;;4265613039:warehouse_bookstore;$vendor
+;4729720539;;4729720539:warehouse_bookstore;$vendor
+;5536152009;;5536152009:warehouse_bookstore;$vendor
+;5650539359;;5650539359:warehouse_bookstore;$vendor
+;6824238759;;6824238759:warehouse_bookstore;$vendor
+;6493374189;;6493374189:warehouse_bookstore;$vendor
+;6265644009;;6265644009:warehouse_bookstore;$vendor
+;7313785739;;7313785739:warehouse_bookstore;$vendor
+;8423207609;;8423207609:warehouse_bookstore;$vendor
+;8679478989;;8679478989:warehouse_bookstore;$vendor
+;8685677009;;8685677009:warehouse_bookstore;$vendor
+;1013742419;;1013742419:warehouse_bookstore;$vendor

@@ -1,23 +1,105 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
-# All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
-# ImpEx for Importing Prices
+# ImpEx for Importing Bookstore Store Prices
+#% impex.setLocale( Locale.ENGLISH );
 
-# Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-
+$productCatalog=bookstoreProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
-$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=eu-vat-full]
 
 # Set product approval status to Approved only for those products that have prices.
-$approved=approvalstatus(code)[default='approved']
+$approved=approvalStatus(code)[default='approved']
 
-UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;Europe1PriceFactory_PTG(code)
+UPDATE Product;code[unique=true];$approved;$catalogVersion;$taxGroup
+;1013742419
+;2121888594
+;1109070349
+;1178279359
+;1210424959
+;1185574409
+;1219543179
+;1259714799
+;1274653819
+;1343905869
+;1381254829
+;1389235939
+;1426604629
+;1435356489
+;1470296489
+;1501089889
+;1601185839
+;1632331179
+;1664834729
+;1666594679
+;1670875989
+;1728482569
+;1863258019
+;1753481309
+;1829089579
+;1984482769
+;2066436119
+;2100149369
+;2761735269
+;4032442169
+;4445843199
+;4482249629
+;4678255109
+;4265613039
+;4729720539
+;5536152009
+;5650539359
+;6824238759
+;6493374189
+;6265644009
+;7313785739
+;8423207609
+;8679478989
+;8685677009
+;9439522259
+
+
+INSERT_UPDATE PriceRow;productId[unique=true];unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];price;unitFactor;net
+;1013742419;pieces;EUR;20;1;false
+;2121888594;pieces;EUR;19;1;false
+;1109070349;pieces;EUR;15;1;false
+;1178279359;pieces;EUR;34;1;false
+;1210424959;pieces;EUR;22;1;false
+;1185574409;pieces;EUR;20;1;false
+;1219543179;pieces;EUR;24;1;false
+;1259714799;pieces;EUR;26;1;false
+;1274653819;pieces;EUR;17;1;false
+;1343905869;pieces;EUR;18;1;false
+;1381254829;pieces;EUR;14;1;false
+;1389235939;pieces;EUR;13.56;1;false
+;1426604629;pieces;EUR;20.78;1;false
+;1435356489;pieces;EUR;20.89;1;false
+;1470296489;pieces;EUR;25;1;false
+;1501089889;pieces;EUR;24;1;false
+;1601185839;pieces;EUR;23;1;false
+;1632331179;pieces;EUR;22;1;false
+;1664834729;pieces;EUR;20;1;false
+;1666594679;pieces;EUR;21.70;1;false
+;1670875989;pieces;EUR;29;1;false
+;1728482569;pieces;EUR;34;1;false
+;1863258019;pieces;EUR;35;1;false
+;1753481309;pieces;EUR;31.90;1;false
+;1829089579;pieces;EUR;21.80;1;false
+;1984482769;pieces;EUR;20.70;1;false
+;2066436119;pieces;EUR;19;1;false
+;2100149369;pieces;EUR;17;1;false
+;2761735269;pieces;EUR;16.60;1;false
+;4032442169;pieces;EUR;18;1;false
+;4445843199;pieces;EUR;19.10;1;false
+;4482249629;pieces;EUR;20.70;1;false
+;4678255109;pieces;EUR;14.80;1;false
+;4265613039;pieces;EUR;22.90;1;false
+;4729720539;pieces;EUR;26.20;1;false
+;5536152009;pieces;EUR;20;1;false
+;5650539359;pieces;EUR;20.90;1;false
+;6824238759;pieces;EUR;22.80;1;false
+;6493374189;pieces;EUR;28;1;false
+;6265644009;pieces;EUR;27.90;1;false
+;7313785739;pieces;EUR;16.90;1;false
+;8423207609;pieces;EUR;34.90;1;false
+;8679478989;pieces;EUR;40.80;1;false
+;8685677009;pieces;EUR;30.90;1;false
+;9439522259;pieces;EUR;28.80;1;false
+

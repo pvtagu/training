@@ -27,12 +27,12 @@
 	<import resource="classpath:/bookstorecore/integration/hot-folder-common-spring.xml"/>
 
 	<!-- SystemSetup for the BookstoreCore -->
-	<bean id="acceleratorCoreSystemSetup" class="my.bookstore.core.setup.CoreSystemSetup"
+	<bean id="acceleratorCoreSystemSetup" class="CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
 
 	<!-- Solr field value providers -->
 	
-	<bean id="volumeAwareProductPriceValueProvider" class="my.bookstore.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
+	<bean id="volumeAwareProductPriceValueProvider" class="VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
         <property name="commonI18NService" ref="commonI18NService"/>
@@ -44,7 +44,7 @@
 
     <bean id="volumePriceComparator" class="my.bookstore.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
 
-    <bean id="productVolumePricesProvider" class="my.bookstore.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+    <bean id="productVolumePricesProvider" class="ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
     </bean>
@@ -156,13 +156,13 @@
 	</bean>
 
 	<bean id="colorFacetValueProvider"
-	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
+	      class="ColorFacetValueProvider"
 	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="colorFacetDisplayNameProvider"
-	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
+	      class="ColorFacetDisplayNameProvider"
 	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
@@ -170,25 +170,25 @@
 	</bean>
 	
 	<bean id="apparelPointOfServiceFacetDisplayNameProvider"
-	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      class="PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 	
 	<bean id="electronicsPointOfServiceFacetDisplayNameProvider"
-	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      class="PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
 	<bean id="genderValueProvider"
-	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
+	      class="GenderValueProvider"
 	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="genderFacetDisplayNameProvider"
-	      class="my.bookstore.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
+	      class="GenderFacetDisplayNameProvider"
 	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
@@ -369,17 +369,17 @@
 	<!-- Simple Suggestion Service -->
 	<alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
 	<bean id="defaultSimpleSuggestionService"
-	      class="my.bookstore.core.suggestion.impl.DefaultSimpleSuggestionService" >
+	      class="DefaultSimpleSuggestionService" >
 		<property name="simpleSuggestionDao" ref="simpleSuggestionDao"/>
 	</bean>
 	<alias alias="simpleSuggestionDao" name="defaultSimpleSuggestionDao"/>
 	<bean id="defaultSimpleSuggestionDao"
-	      class="my.bookstore.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+	      class="DefaultSimpleSuggestionDao"
 	      parent="abstractItemDao" >
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
 
-	<bean id="mccSiteUrlHelper" class="my.bookstore.core.util.MccSiteUrlHelper" >
+	<bean id="mccSiteUrlHelper" class="MccSiteUrlHelper" >
 		<property name="siteChannelValidationStrategy" ref="siteChannelValidationStrategy"/>
 		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
 		<property name="cmsSiteService" ref="cmsSiteService"/>
@@ -431,15 +431,15 @@
 	</bean>
 
 	<bean id="apparelSizeProductReferenceTargetStrategy"
-	      class="my.bookstore.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
+	      class="ApparelSizeProductReferenceTargetStrategy">
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="rootCategoryCode" value="categories"/>
 	</bean>
-	
+
 	<!-- bookstore specific configuration -->
 	
 		<bean name="pointsToNextLevelAttrHandler" 
-		      class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
+		      class="PointsToNextLevelAttrHandler" />
 
 	<bean name="rewardStatusLevelConfigurationDao"
 		class="de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao">
@@ -447,17 +447,31 @@
 			value="#{T(my.bookstore.core.model.RewardStatusLevelConfigurationModel). _TYPECODE}" />
 	</bean>
 
-
 	<alias alias="rentalDao" name="defaultRentalDao" />
-	<bean id="defaultRentalDao" class="my.bookstore.core.daos.impl.DefaultRentalDao" 
-	      parent="abstractItemDao">
-		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	<bean id="defaultRentalDao" class="my.bookstore.core.daos.impl.DefaultRentalDao"
+		parent="abstractItemDao">
 	</bean>
 
-	<!-- TODO exercise 5.1 add bean definition below -->
 	<bean name="customerDao"
-		  parent="rewardStatusLevelConfigurationDao"
-		  class="my.bookstore.core.daos.impl.CustomerDao">
+		class="de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao">
+		<constructor-arg
+			value="#{T(de.hybris.platform.core.model.user.CustomerModel). _TYPECODE}" />
+	</bean>
+
+	<!-- TODO exercise 6.1 -->
+	<!-- TODO exercise 6.3 -->
+	<!-- Uncomment the code below and add your implementation -->
+<!--  
+	<alias alias="bookstoreCustomerAccountService" name="defaultBookstoreCustomerAccountService" />
+	<bean id="defaultBookstoreCustomerAccountService"
+		class="my.bookstore.core.services.impl.DefaultBookstoreCustomerAccountService">
+		
+	</bean>
+-->
+
+	<alias alias="rentalService" name="defaultRentalService" />
+	<bean id="defaultRentalService" class="my.bookstore.core.services.impl.DefaultRentalService">
+		<!-- TODO exercise 6.4: add necessary properties -->
 	</bean>
 
 </beans>
