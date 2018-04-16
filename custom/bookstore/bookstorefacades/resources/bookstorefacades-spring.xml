@@ -2,15 +2,14 @@
 <!--
  [y] hybris Platform
 
- Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
+ Copyright (c) 2000-2015 hybris AG
  All rights reserved.
 
- This software is the confidential and proprietary information of SAP
+ This software is the confidential and proprietary information of hybris
  ("Confidential Information"). You shall not disclose such Confidential
  Information and shall use it only in accordance with the terms of the
- license agreement you entered into with SAP.
+ license agreement you entered into with hybris.
 -->
-
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -83,12 +82,16 @@
 	<bean id="apparelProductPopulator" class="my.bookstore.facades.populators.ApparelProductPopulator" >
 		<property name="genderConverter" ref="genderConverter"/>
 	</bean>
-
-	<!-- Add the apparelProductPopulator to the productConverter -->
-	<bean parent="modifyPopulatorList">
-		<property name="list" ref="productConverter"/>
-		<property name="add" ref="apparelProductPopulator"/>
+	
+	<bean id="bookstoreProductPopulator" class="my.bookstore.facades.populators.BookstoreProductPopulator" >
 	</bean>
+
+	<!-- TODO exercise 7.2 Uncomment and add your code -->
+	<!--
+	<bean parent="modifyPopulatorList">
+		
+	</bean>
+	-->
 
 	<!-- accelerator Image Format Mappings -->
 	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>
