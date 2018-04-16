@@ -35,6 +35,7 @@ import org.junit.Test;
 
 import my.bookstore.core.enums.RewardStatusLevel;
 import my.bookstore.core.model.BookModel;
+import my.bookstore.core.services.BookstoreCustomerAccountService;
 
 
 /**
@@ -67,7 +68,7 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	private FlexibleSearchService flexibleSearchService;
 
 	@Resource
-	DefaultBookstoreCustomerAccountService defaultBookstoreCustomerAccountService;
+	BookstoreCustomerAccountService bookstoreCustomerAccountService;
 
 	@Resource
 	EnumerationService enumerationService;
@@ -94,26 +95,20 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	 *
 	 */
 
+	@SuppressWarnings("boxing")
 	@Test
 	public void testUpdateRewardStatusPoints()
 	{
 		// Setup: we need a customer and an order (including order entries, books, units and a currency).
 		initializeOrder();
 
-		/*
-		 * -------------------------------------------------------------------------------------------------------- TODO
-		 * exercise 6.2: Pass in an order and check that the customer's points are updated by the total points of the
-		 * books in the order. The customer should end up with 70 points.
-		 */
-		// 1. Call updateRewardStatusPoints() method
+		bookstoreCustomerAccountService.updateRewardStatusPoints(customer, order);
 
-		//...
+		if (!customer.getPoints().equals(Integer.valueOf(70)))
+		{
+			fail("Customer was not awarded the correct number of points");
+		}
 
-		// 2. Make sure the customer's point total is the sum of the books in the order
-
-		//...
-
-		fail("Customer was not awarded the correct number of points");
 	}
 
 
@@ -130,25 +125,19 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	@Test
 	public void testGetAllCustomersForLevel()
 	{
-
 		// Setup: we need a few customers with various reward levels.
 		initializeCustomers();
 
-		/*
-		 * ------------------------------------------------------------------------------------------------- TODO exercise
-		 * 6.3: get all the gold-level customers. The initializeCustomers() method has created five customers, three of
-		 * them gold. It populated the following list:
-		 *
-		 * goldCustomerIds -- The Ids of the customers with reward status level GOLD
-		 */
+		final List<CustomerModel> goldCustomersModel = bookstoreCustomerAccountService.getAllCustomersForLevel(gold);
 
-		// 1. Call getAllCustomersForLevel() method
-		//...
+		for (final CustomerModel customer : goldCustomersModel)
+		{
+			if (!goldCustomerIds.contains(customer.getUid()))
+			{
+				fail("The getAllCustomersForLevel did not correctly return all the gold customers.");
+			}
+		}
 
-		// 2. Compare the UIDs of the returned customers with the goldCustomerIds list
-		//...
-
-		fail("The getAllCustomersForLevel did not correctly return all the gold customers.");
 	}
 
 

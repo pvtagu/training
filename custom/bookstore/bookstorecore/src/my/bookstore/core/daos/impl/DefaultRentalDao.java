@@ -1,8 +1,8 @@
 package my.bookstore.core.daos.impl;
 
 import de.hybris.platform.catalog.CatalogVersionService;
+import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.core.model.user.CustomerModel;
-import de.hybris.platform.jalo.flexiblesearch.FlexibleSearch;
 import de.hybris.platform.servicelayer.internal.dao.AbstractItemDao;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 
@@ -25,12 +25,17 @@ public class DefaultRentalDao extends AbstractItemDao implements RentalDao
 	@Override
 	public List<RentalModel> getActiveRentalsForCustomer(final CustomerModel customer)
 	{
+		final String PRODUCT_CATALOG_NAME = "bookstoreProductCatalog";
+		final String STAGED_VERSION_NAME = "Staged";
 		/*
 		 * This could be done using GenericDao but for learning purposes we are using Flexible Search
 		 *
 		 * When figuring out when rentals start/end, we want to be generous: begin at the start of the first day, and stop
 		 * at the end of the last day. For that, we need two date variables: dayStart and dayEnd.
 		 */
+
+		final CatalogVersionModel bookstoreProductCatalog = catalogVersionService.getCatalogVersion(PRODUCT_CATALOG_NAME,
+				STAGED_VERSION_NAME);
 
 		final Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -43,21 +48,18 @@ public class DefaultRentalDao extends AbstractItemDao implements RentalDao
 		final Date dayEnd = cal.getTime(); // dayEnd
 
 		// TODO exercise 5.3: Get the list of all the active rentals for this customer
-		
-		final String queryString = "SELECT {r.PK}"
-											+ "FROM {rental as r JOIN customer as c"
-											+ "on {r.customer} = {c.PK} JOIN book as b"
-											+ "on {r.book} = {b.PK}}"
-											+ "WHERE {c.uid} = ?customer AND"
-											+ "{r.startDate} < ?dayStart AND"
-											+ "{r.endDate} > ?dayEnd";
-		
-		FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
-		
+
+		final String queryString = "SELECT {r.PK}" + "FROM {rental as r JOIN customer as c"
+				+ "on {r.customer} = {c.PK} JOIN book as b" + "on {r.book} = {b.PK}}" + "WHERE {c.uid} = ?customer AND"
+				+ "{b.CatalogVersionModel} = ?catalogVersion" + "{r.startDate} < ?dayStart AND" + "{r.endDate} > ?dayEnd";
+
+		final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
+
 		fsq.addQueryParameter("customer", customer);
+		fsq.addQueryParameter("catalogVersion", bookstoreProductCatalog);
 		fsq.addQueryParameter("dayStart", dayStart);
 		fsq.addQueryParameter("dayEnd", dayEnd);
-		
+
 		return getFlexibleSearchService().<RentalModel> search(fsq).getResult();
 	}
 
@@ -66,16 +68,14 @@ public class DefaultRentalDao extends AbstractItemDao implements RentalDao
 	{
 
 		// TODO exercise 5.5: Get the 5 most rented books
-		
-		final String queryString = "SELECT TOP ?numberOfBooks {r.book}"
-											+ "FROM {rental as r}"
-											+ "GROUP BY {r.book}"
-											+ "ORDER BY Count(*) DESC";
-		
-		FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
-		
+
+		final String queryString = "SELECT TOP ?numberOfBooks {r.book}" + "FROM {rental as r}" + "GROUP BY {r.book}"
+				+ "ORDER BY Count(*) DESC";
+
+		final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryString);
+
 		fsq.addQueryParameter("numberOfBooks", Integer.valueOf(numberOfBooks));
-		
+
 		return getFlexibleSearchService().<BookModel> search(fsq).getResult();
 	}
 }
