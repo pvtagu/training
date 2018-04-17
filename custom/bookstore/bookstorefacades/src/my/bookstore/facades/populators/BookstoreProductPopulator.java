@@ -31,6 +31,7 @@ public class BookstoreProductPopulator implements Populator<ProductModel, Produc
 		target.setLanguage(source.getLanguage());
 		target.setPublishedDate(source.getPublishedDate());
 		target.setRentable(source.getRentable());
+		target.setRewardPoints(source.getRewardPoints());
 
 		if (target instanceof BookData)
 		{

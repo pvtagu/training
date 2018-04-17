@@ -87,11 +87,11 @@
 	</bean>
 
 	<!-- TODO exercise 7.2 Uncomment and add your code -->
-	<!--
 	<bean parent="modifyPopulatorList">
-		
+		<property name="list" ref="productConverter" />
+		<property name="add" ref="bookstoreProductPopulator" />
 	</bean>
-	-->
+	
 
 	<!-- accelerator Image Format Mappings -->
 	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>

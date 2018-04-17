@@ -164,3 +164,6 @@ custom/bookstore/bookstorecore/gensrc/
 custom/bookstore/bookstorefacades/gensrc/
 custom/bookstore/bookstorefulfilmentprocess/gensrc/
 
+custom/bookstore/bookstorefacades/gensrc/my/bookstore/
+custom/bookstore/bookstorefacades/gensrc/my/bookstore/*
+
