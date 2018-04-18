@@ -1,4 +1,4 @@
-# 
+#
 # Create the BaseStore bookstore
 #
 
@@ -12,8 +12,12 @@
 # languages(isocode): en
 
 $storeUid=bookstore
+$lang=en
+
+$systemName=BookstoreClassification;
+$productCatalog=bookstoreProductCatalog
 
 
-#INSERT_UPDATE BaseStore;uid[unique=true]....
-#;$storeUid;...
+INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id)[unique=true];defaultCurrency(isocode);defaultLanguage(isocode);currencies(isocode);languages(isocode)
+;$storeUid;$systemName,$productCatalog;EUR;$lang;EUR;$lang
 
