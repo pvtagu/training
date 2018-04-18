@@ -1,0 +1,19 @@
+# 
+# Create the BaseStore bookstore
+#
+
+
+# TODO exercise 9.1: Create BaseStore with following info: 
+# uid=bookstore 
+# catalogs ids = bookstoreProductCatalog,BookstoreClassification
+# default currency: EUR
+# default language: en
+# currencies(isocode): EUR
+# languages(isocode): en
+
+$storeUid=bookstore
+
+
+#INSERT_UPDATE BaseStore;uid[unique=true]....
+#;$storeUid;...
+

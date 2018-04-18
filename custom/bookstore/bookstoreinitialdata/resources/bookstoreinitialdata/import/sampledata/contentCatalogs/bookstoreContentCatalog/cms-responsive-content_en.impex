@@ -1,0 +1,17 @@
+$contentCatalog=bookstoreContentCatalog
+$contentCatalogName=Bookstore Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=en
+
+#update navigation node title
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+;;MyAccountNavNode;"My Account"
+
+# update linkname
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PersonalDetailsLink;"Update Personal Details"
+;;UpdateEmailLink;"Update Email"
+;;UpdatePasswordLink;"Update Password"
+;;AddressBookLink;"Address Book"
+;;PaymentDetailsLink;"Payment Details"
+;;OrderHistoryLink;"Order History"

@@ -1,0 +1,28 @@
+$productCatalog=bookstoreProductCatalog
+$contentCatalog=bookstoreContentCatalog
+$defaultLanguage=en
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$storeUid=bookstore
+$siteUid=bookstore
+
+
+# TODO exercise 9.4: create a CMSSite with the following info
+# uid: bookstore
+# theme(code): alpha
+# channel(code): B2C
+# stores(uid): bookstore
+# contentCatalogs(id): bookstoreContentCatalog
+# defaultCatalog(id): bookstoreProductCatalog
+# defaultLanguage(isocode): en
+# urlPatterns: (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUid)(|\&.*)$,
+#				(?i)^https?://$siteUid[^/]+(|/.*|\?.*)$,
+#				(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,
+#				(?i)^https?://localhost(:[\d]+)?/rest/.*$
+# active: true
+# previewURL: /bookstorestorefront/?site=bookstore
+# startingPage(uid,$contentCV): homepage
+# urlEncodingAttributes: language
+
+
+#INSERT_UPDATE CMSSite;uid[unique=true]....
+#;$siteUid;...

@@ -1,0 +1,218 @@
+$contentCatalog=bookstoreContentCatalog
+$contentCatalogName=Bookstore Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=bookstoreProductCatalog
+$productCatalogName=Bookstore Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:my.bookstore.initialdata.setup.InitialDataSystemSetup&/bookstoreinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=en];
+$picture=media(code, $contentCV);
+$lang=en
+
+##  Remove the language currency component from the search and place a tag in the footer
+# CMS SearchBox Components
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;SearchBoxSlot;SearchBox
+
+# Remove new customer component from the center slot of the checkout login page
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;CenterContentSlot-checkout-login;Center Content Slot for Checkout Login;true;;;;
+
+
+###  Home page splash Slot 1  #######
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;BookstoreHompageBestsellersBannerComponent;Bookstore Homepage Bestseller Banner Component;"/";BookstoreHompageBestsellersBannerComponent
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+;;Section1Slot-Homepage;true;BookstoreHompageBestsellersBannerComponent
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/jpeg'];$contentCV[unique=true];folder(qualifier)[default=images];
+;mobile;bookstore-bestseller-banner-small-mobile.jpeg;$siteResource/images/banners/homepage/responsive/bookstore-bestseller-banner-small.jpeg;bookstore-bestseller-banner-small.jpeg;"Bestsellers";
+;tablet;bookstore-bestseller-banner-small-tablet.jpeg;$siteResource/images/banners/homepage/responsive/bookstore-bestseller-banner-small.jpeg;bookstore-bestseller-banner-small.jpeg;"Bestsellers";
+;desktop;bookstore-bestseller-banner-big-desktop.jpeg;$siteResource/images/banners/homepage/responsive/bookstore-bestseller-banner-big.jpeg;bookstore-bestseller-banner-big.jpeg;"Bestsellers";
+;widescreen;bookstore-bestseller-banner-big-widescreen.jpeg;$siteResource/images/banners/homepage/responsive/bookstore-bestseller-banner-big.jpeg;bookstore-bestseller-banner-big.jpeg;"Bestsellers";
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;bookstore-homepage-bestsellers-en;bookstore-bestseller-banner-small-mobile.jpeg,bookstore-bestseller-banner-small-tablet.jpeg,bookstore-bestseller-banner-big-desktop.jpeg,bookstore-bestseller-banner-big-widescreen.jpeg
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];$mediaContainer
+;;BookstoreHompageBestsellersBannerComponent;bookstore-homepage-bestsellers-en
+
+#################    MY ACCOUNT START    #################
+
+#### Remove everything related to my account home page and profile overview page for responsive
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true]
+;;SideContent-Account
+;;SideContent-profile
+
+REMOVE ContentPage;$contentCV[unique=true];uid[unique=true]
+;;account
+;;profile
+
+##### Add AccountOrderDetailsActionsComponent
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;AccountOrderDetailsHeadlineComponent;Account Order Details Headline Component;accountOrderDetailHeadline.jsp;;AccountOrderDetailsHeadlineComponent
+;;AccountOrderDetailsTotalsComponent;Account Order Details Order Totals Component;accountOrderDetailOrderTotals.jsp;;AccountOrderDetailsTotalsComponent
+;;AccountOrderDetailsShippingComponent;Account Order Details Shipping Info Component;accountOrderDetailShippingInfo.jsp;;AccountOrderDetailsShippingComponent
+;;AccountOrderDetailsItemsComponent;Account Order Details Items Info Component;accountOrderDetailItems.jsp;;AccountOrderDetailsItemsComponent
+;;AccountOrderDetailsActionsComponent;Account Order Details Actions Component;accountOrderDetailActions.jsp;;AccountOrderDetailsActionsComponent
+
+###### Empty account page SideContent and BodyContent slots
+UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef);
+;;SideContent-payment-details;;
+;;SideContent-address-book;;
+;;SideContent-add-edit-address;;
+;;SideContent-orders;;
+;;SideContent-orderdetail;;
+;;SideContent-updatePassword;;
+;;SideContent-update-profile;;
+;;SideContent-update-email;;
+;;BodyContent-orderdetail;AccountOrderDetailsHeadlineComponent,AccountOrderDetailsItemsComponent,AccountOrderDetailsShippingComponent,AccountOrderDetailsTotalsComponent,AccountOrderDetailsActionsComponent;
+
+#################    MY ACCOUNT END    #################
+
+
+# Site Logo
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;/images/theme/logo-hybris-responsive.png;logo-hybris-responsive.png;$siteResource/images/theme/logo-hybris-responsive.png;image/png;hybris Accelerator;
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;/images/theme/logo-hybris-responsive.png
+
+###  Responsive Error page #######
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/jpeg'];$contentCV[unique=true];folder(qualifier)[default=images]
+;mobile;Elec_480x170_ErrorPage_480W.jpg;$siteResource/images/banners/site/Elec_480x170_ErrorPage_480W.jpg;Elec_480x170_ErrorPage_480W.jpg;"Page not found";
+;tablet;Elec_770x221_ErrorPage_770W.jpg;$siteResource/images/banners/site/Elec_770x221_ErrorPage_770W.jpg;Elec_770x221_ErrorPage_770W.jpg;"Page not found";
+;desktop;Elec_960x275_ErrorPage_960W.jpg;$siteResource/images/banners/site/Elec_960x275_ErrorPage_960W.jpg;Elec_960x275_ErrorPage_960W.jpg;"Page not found";
+;widescreen;Elec_1400x401_ErrorPage_1400W.jpg;$siteResource/images/banners/site/Elec_1400x401_ErrorPage_1400W.jpg;Elec_1400x401_ErrorPage_1400W.jpg;"Page not found";
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+;bookstore-errorpage-pagenotfound;Elec_480x170_ErrorPage_480W.jpg,Elec_770x221_ErrorPage_770W.jpg,Elec_960x275_ErrorPage_960W.jpg,Elec_1400x401_ErrorPage_1400W.jpg
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$mediaContainer
+;;BookstoreErrorpageBannerComponent;Bookstore Error Page Banner Component;BookstoreErrorpageBannerComponent;bookstore-errorpage-pagenotfound
+
+# Create ContentSlots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;MiddleContent-Errorpage;Middle Content Slot for Error Page;true;BookstoreErrorpageBannerComponent;;;
+
+# Create Content Slots for Page
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='notFound'];contentSlot(uid,$contentCV)[unique=true]
+;;MiddleContent-Errorpage;MiddleContent;;MiddleContent-Errorpage
+
+# create cms link components for my account pages
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;target(code)[default='sameWindow']
+;;PersonalDetailsLink;PersonalDetailsLink;/my-account/update-profile;PersonalDetailsLink;
+;;UpdateEmailLink;UpdateEmailLink;/my-account/update-email;UpdateEmailLink;
+;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;
+;;AddressBookLink;AddressBookLink;/my-account/address-book;AddressBookLink;
+;;PaymentDetailsLink;PaymentDetailsLink;/my-account/payment-details;PaymentDetailsLink;
+;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;
+
+# create navigation root node for my account & child nodes for the root node 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;MyAccountNavNode;;My Account Nav;SiteRootNode;;MyAccountNavNode
+# children for my account
+;PersonalDetailsNavNode;;PersonalDetailsNavNode;MyAccountNavNode;;PersonalDetailsNavNode
+;UpdateEmailNavNode;;UpdateEmailNavNode;MyAccountNavNode;;UpdateEmailNavNode
+;PaymentDetailsNavNode;;PaymentDetailsNavNode;MyAccountNavNode;;PaymentDetailsNavNode
+;ChangePasswordNavNode;;ChangePasswordNavNode;MyAccountNavNode;;ChangePasswordNavNode
+;OrderHistoryNavNode;;OrderHistoryNavNode;MyAccountNavNode;;OrderHistoryNavNode
+;AddressBookNavNode;;AddressBookNavNode;MyAccountNavNode;;AddressBookNavNode
+
+# create cms navigation entry for nvaigation child nodes
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
+;PersonalDetailsNavNodeEntry;;PersonalDetailsNavNodeEntry;PersonalDetailsNavNode;PersonalDetailsLink;
+;UpdateEmailNavNodeEntry;;UpdateEmailNavNodeEntry;UpdateEmailNavNode;UpdateEmailLink;
+;ChangePasswordNavNodeEntry;;ChangePasswordNavNodeEntry;ChangePasswordNavNode;UpdatePasswordLink;
+;AddressBookNavNodeEntry;;AddressBookNavNodeEntry;AddressBookNavNode;AddressBookLink;
+;PaymentDetailsNavNodeEntry;;PaymentDetailsNavNodeEntry;PaymentDetailsNavNode;PaymentDetailsLink;
+;OrderHistoryNavNodeEntry;;OrderHistoryNavNodeEntry;OrderHistoryNavNode;OrderHistoryLink;
+
+# create navigation component for my account
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;MyAccountComponent;My Account;accNavComponent;MyAccountComponent;MyAccountNavNode
+
+# create a user restriction
+INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];&userRestriction;name;uid[unique=true];users(uid)
+;;anonymousUserRestriction;Anonymous User Restriction;anonymousUserRestriction;anonymous
+
+# create a inverse restriction
+INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];name;originalRestriction(&userRestriction)[allownull=true];uid[unique=true];components(&componentRef)
+;;Logged in User;anonymousUserRestriction;loggedInUser;MyAccountComponent
+
+# add my account navigation component to a content slot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;HeaderLinksSlot;MyAccountComponent
+
+##############################################################################################################
+############ remove all the account related links, components and nodes							 #############
+############ remove the INSERT_UPDATE & REMOVE statements when merging with desktop.			 #############
+##############################################################################################################
+REMOVE CMSLinkComponent;uid[unique=true];$contentCV[unique=true]
+;AccountHomeLink;
+;AccountProfileLink;
+;AccountPersonalDetailsLink;
+;AccountUpdatePasswordLink;
+;AccountAddressBookLink;
+;AccountManageAddressLink;
+;AccountPaymentDetailsLink;
+;AccountManagePaymentDetailsLink;
+;AccountOrderHistoryLink;
+;AccountViewOrderHistoryLink;
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true]
+;AccountProfileNavNode;
+;AccountAddressBookNavNode;
+;AccountPaymentDetailsNavNode;
+;AccountOrderHistoryNavNode;
+;AccountLeftNavNode;
+
+REMOVE AccountNavigationComponent;uid[unique=true];$contentCV[unique=true]
+;AccountLeftNavigationComponent;
+;AccountProfileNavigationComponent;
+;AccountAddressBookNavigationComponent;
+;AccountPaymentDetailsNavigationComponent;
+;AccountOrderHistoryNavigationComponent;
+
+REMOVE AccountNavigationCollectionComponent;uid[unique=true];$contentCV[unique=true]
+;AccountHomepageComponent;
+
+# CMS Paragraph Component (Contact information) 
+REMOVE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true]
+;;ContactInfo
+
+##############################################################################################################
+############ 									end												 #############
+############ 																					 #############
+##############################################################################################################
+
+
+######## Order Confirmation Page Start #######
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
+;;OrderConfirmationThankMessageComponent;Order Confirmation Thank You Message Component;checkoutConfirmationThankMessage.jsp;;OrderConfirmationThankMessageComponent
+;;OrderConfirmationOverviewComponent;Order Confirmation Overview Info Component;/WEB-INF/views/responsive/pages/account/accountOrderDetailOverview.jsp;;OrderConfirmationOverviewComponent
+;;OrderConfirmationTotalsComponent;Order Confirmation Totals Component;/WEB-INF/views/responsive/pages/account/accountOrderDetailOrderTotals.jsp;;OrderConfirmationTotalsComponent
+;;OrderConfirmationShippingComponent;Order Confirmation Shipping Info Component;/WEB-INF/views/responsive/pages/account/accountOrderDetailShippingInfo.jsp;;OrderConfirmationShippingComponent
+;;OrderConfirmationItemsComponent;Order Confirmation Items Info Component;/WEB-INF/views/responsive/pages/account/accountOrderDetailItems.jsp;;OrderConfirmationItemsComponent
+;;OrderConfirmationContinueButtonComponent;Order Confirmation Continue Button Component;checkoutConfirmationContinueButton.jsp;;OrderConfirmationContinueButtonComponent
+
+# ContentSlotForPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='orderConfirmationPage'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-orderConfirmation;SideContent;;SideContent-orderConfirmation;;;
+;;BodyContent-orderConfirmation;BodyContent;;BodyContent-orderConfirmation;;;
+
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-orderConfirmation;Side Content Slot for Order Confirmation;true;;;;
+;;BodyContent-orderConfirmation;Body Content Slot for Order Confirmation;true;OrderConfirmationThankMessageComponent,OrderConfirmationOverviewComponent,OrderConfirmationItemsComponent,OrderConfirmationShippingComponent,OrderConfirmationTotalsComponent,OrderConfirmationContinueButtonComponent;;;
+
+######## Order Confirmation Page End ########

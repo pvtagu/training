@@ -1,0 +1,6 @@
+#TODO exercise 9.1 Uncomment and modify the script
+
+$lang=en
+
+#UPDATE BaseStore;uid[unique=true];...
+#;bookstore;....

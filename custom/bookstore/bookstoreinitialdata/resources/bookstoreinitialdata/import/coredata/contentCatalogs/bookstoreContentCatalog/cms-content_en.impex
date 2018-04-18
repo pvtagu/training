@@ -1,0 +1,31 @@
+#
+# Import CMS content for the site
+#
+
+$contentCatalog=bookstoreContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+# Language
+$lang=en
+
+# Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];masterTemplate(uid,$contentCV);title[lang=$lang]
+ ;;account;AccountPageTemplate;"My Account"
+ ;;add-edit-address;AccountPageTemplate;"Add/Edit Address"
+ ;;address-book;AccountPageTemplate;"Address Book"
+ ;;cartPage;CartPageTemplate;"Your Shopping Cart"
+ ;;checkout-login;CheckoutLoginPageTemplate;"Proceed to Checkout"
+ ;;login;LoginPageTemplate;"Login"
+ ;;multiStepCheckoutSummaryPage;MultiStepCheckoutSummaryPageTemplate;"Checkout"
+ ;;notFound;ErrorPageTemplate;"Not Found"
+ ;;order;AccountPageTemplate;"Order Details"
+ ;;orderConfirmationPage;OrderConfirmationPageTemplate;"Order Confirmation"
+ ;;orders;AccountPageTemplate;"Order History"
+ ;;payment-details;AccountPageTemplate;"Payment Details"
+ ;;profile;AccountPageTemplate;"Profile"
+ ;;searchEmpty;SearchResultsEmptyPageTemplate;"No Results"
+ ;;update-email;AccountPageTemplate;"Update Email"
+ ;;update-profile;AccountPageTemplate;"Update Profile"
+ ;;updatePassword;AccountPageTemplate;"Update Forgotten Password"
+ # Check the localization related to the homepage that you created
+ ;;homepage;LandingPage2Template;"Homepage"
