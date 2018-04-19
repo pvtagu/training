@@ -471,7 +471,8 @@ UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];linkComponents(&link
 
 # TODO exercise 9.2: Update ContentPage homepage
 
-UPDATE ContentPage;....
+UPDATE ContentPage;$contentCV;uid[unique=true];linkComponents(&linkRef)
+;;homepage;HomepageNavLink
 
 # TODO exercise 9.3: Extend the script below
 
@@ -482,3 +483,4 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 ;;Section3-Homepage;Section3;;Section3Slot-Homepage
 ;;Section4-Homepage;Section4;;Section4Slot-Homepage
 ;;Section5-Homepage;Section5;;Section5Slot-Homepage
+;;Section1-Homepage;Section1;;Section1Slot-Homepage
