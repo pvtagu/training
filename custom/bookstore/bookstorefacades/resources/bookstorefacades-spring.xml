@@ -86,12 +86,28 @@
 	<bean id="bookstoreProductPopulator" class="my.bookstore.facades.populators.BookstoreProductPopulator" >
 	</bean>
 
-	<!-- TODO exercise 7.2 Uncomment and add your code -->
 	<bean parent="modifyPopulatorList">
-		<property name="list" ref="productConverter" />
-		<property name="add" ref="bookstoreProductPopulator" />
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="bookstoreProductPopulator"/>
 	</bean>
+
+	<!--TODO exercise 10.1 Uncomment and add your bean definition-->
+	<bean id="searchResultProductRewardPointsPopulator" class="my.bookstore.facades.populators.SearchResultProductRewardPointsPopulator" >
+	</bean>
+
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="commerceSearchResultProductConverter" />
+		<property name="add" ref="searchResultProductRewardPointsPopulator" />
+	</bean>
+
 	
+	<bean id="customerPointsPopulator" class="my.bookstore.facades.populators.CustomerPointsPopulator"/>
+ 
+	<bean parent="modifyPopulatorList">
+	    <property name="list" ref="customerConverter"/>
+	    <property name="add"  ref="customerPointsPopulator"/>
+	</bean>
 
 	<!-- accelerator Image Format Mappings -->
 	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>

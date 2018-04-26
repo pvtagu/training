@@ -1,0 +1,9 @@
+#
+# Import the Solr CronJob Trigger configuration for the Product Catalog
+#
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+# Run the full-bookstoreIndex-cronJob at 3:05 AM every day
+;full-bookstoreIndex-cronJob;0;5;3;-1;-1;-1;false;true;-1
+
+# Run the update-bookstoreIndex-cronJob every 1 minutes
+;update-bookstoreIndex-cronJob;0;1;-1;-1;-1;-1;true;true;-1

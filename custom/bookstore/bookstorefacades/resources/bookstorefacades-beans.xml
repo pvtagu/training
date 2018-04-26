@@ -7,6 +7,7 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="beans.xsd">
 
+	<!-- TODO exercise 7.1 -->
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="genders"
 			type="java.util.List&lt;my.bookstore.facades.product.data.GenderData>" />
@@ -16,9 +17,7 @@
 		<property name="publisher" type="String"></property>
 		<property name="publishedDate" type="java.util.Date"></property>
 		<property name="rentable" type="Boolean"></property>
-		<!-- TODO exercise 7.1 add your new property below-->
-		<property name="rewardPoints" type="Integer" />
-		
+		<property name="rewardPoints" type="Integer"></property>
 	</bean>
 
 	<bean class="my.bookstore.facades.product.data.GenderData">
@@ -31,8 +30,8 @@
 		<property name="edition" type="String"></property>
 		<property name="publication" type="Integer"></property>
 	</bean>
-
+	
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
-		<property name="points" type="Integer" />
+	    <property name="points" type="Integer"/>
 	</bean>
 </beans>

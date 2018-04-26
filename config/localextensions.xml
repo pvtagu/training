@@ -1,47 +1,73 @@
-<hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
+<?xml version="1.0" encoding="UTF-8"?>
+<hybrisconfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="resources/schemas/extensions.xsd">
   <extensions>
-    <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
-    <extension name='backoffice' />
-    <extension name='cockpit' />
-    <extension name='hmc' />
-    <extension name='mcc' />
-    <extension name='platformhmc' />
-    <extension name='platformbackoffice' />
-    <extension name='btg' />
-    <extension name='btgcockpit' />
-    <extension name='commercesearch' />
-    <extension name='commercesearchhmc' />
-    <extension name='commerceservices' />
-    <extension name='basecommerce' />
-    <extension name='payment' />
-    <extension name='customerreview' />
-    <extension name='ticketsystem' />
-    <extension name='solrserver' />
-    <extension name='solrfacetsearch' />
-    <extension name='solrfacetsearchhmc' />
-    <extension name='commercefacades' />
-    <extension name='commerceservicesbackoffice' />
-    <extension name='addonsupport' />
-    <extension name='productcockpit' />
-    <extension name='cms2' />
-    <extension name='cms2lib' />
-    <extension name='cmscockpit' />
-    <extension name='classificationsystems' />
-    <extension name='classificationsystemshmc' />
-    <extension name='cscockpit' />
-    <extension name='acceleratorservices' />
-    <extension name='acceleratorfacades' />
-    <extension name='acceleratorcms' />
-    <extension name='acceleratorstorefrontcommons' />
-    <extension name='springintegrationlibs' />
-	
-	<!-- Project Extensions -->
-	
-	<extension name='bookstorefulfilmentprocess' />
-	<extension name='bookstorecore' />
-	<extension name='bookstoreinitialdata' />
-	<extension name='bookstorefacades' />
-	<extension name='bookstorestorefront' />
-	<extension name='bookstorecockpits' />
+    <!-- All extensions located in ${HYBRIS_BIN_DIR}/platform/ext are automatically
+        loaded. More information about how to configure available extensions can
+        be found here : https://wiki.hybris.com/x/nZVzC -->
+
+
+    <path dir="${HYBRIS_BIN_DIR}" />
+
+
+    <!-- ext-platform -->
+    <extension name="backoffice" />
+    <extension name="cockpit" />
+    <extension name="hmc" />
+    <extension name="mcc" />
+    <extension name="platformhmc" />
+    <extension name="platformbackoffice" />
+
+
+    <!-- ext-commerce -->
+    <extension name="btg" />
+    <extension name="btgcockpit" />
+    <extension name="commercesearch" />
+    <extension name="commercesearchhmc" />
+    <extension name="commerceservices" />
+    <extension name="basecommerce" />
+    <extension name="payment" />
+    <extension name="customerreview" />
+    <extension name="ticketsystem" />
+    <extension name="solrserver" />
+    <extension name="solrfacetsearch" />
+    <extension name="solrfacetsearchhmc" />
+    <extension name="commercefacades" />
+    <extension name="commerceservicesbackoffice" />
+
+
+    <extension name="addonsupport" />
+
+    <!-- ext-content -->
+    <extension name="productcockpit" />
+    <extension name="cms2" />
+    <extension name="cms2lib" />
+    <extension name="cmscockpit" />
+    <extension name="classificationsystems" />
+    <extension name="classificationsystemshmc" />
+
+
+    <!-- ext-channel -->
+    <extension name="cscockpit" />
+
+    <extension name="bookstorefulfilmentprocess" />
+    <extension name="bookstorecore" />
+    <extension name="bookstoreinitialdata" />
+    <extension name="bookstorefacades" />
+    <extension name="bookstorestorefront" />
+    <extension name="bookstorecockpits" />
+
+    <!-- ext-accelerator -->
+    <extension name="acceleratorservices" />
+    <extension name="acceleratorfacades" />
+    <extension name="acceleratorcms" />
+    <extension name="acceleratorstorefrontcommons" />
+
+    <extension name="springintegrationlibs" />
+
+    <extension name="solrfacetsearchbackoffice" />
+    <!-- TODO exercise 10.4 add commercesearchbackoffice here! <extension .../> -->
+    <extension name="commercesearchbackoffice" />
+
   </extensions>
 </hybrisconfig>

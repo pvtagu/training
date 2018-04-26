@@ -64,3 +64,7 @@ INSERT_UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[l
 
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
 ;;NewBookstoreHomepageProductCarouselComponent;What's New
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang];
+;;homepage;"Homepage"
+;;search;"Search Result"

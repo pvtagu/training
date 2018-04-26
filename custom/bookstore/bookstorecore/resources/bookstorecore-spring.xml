@@ -473,5 +473,16 @@
 		<!-- TODO exercise 6.4: add necessary properties -->
 		<property name="rentalDao" ref="rentalDao" />
 	</bean>
+	
+	<bean id="bookstoreCategorySource" parent="abstractCategorySource">
+	</bean>
+
+	<bean id="bookstoreCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="bookstoreCategorySource" />
+	</bean>
+
+	<bean id="bookstoreCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="bookstoreCategorySource" />
+	</bean>
 
 </beans>
