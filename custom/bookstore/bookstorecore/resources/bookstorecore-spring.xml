@@ -437,10 +437,9 @@
 	</bean>
 
 	<!-- bookstore specific configuration -->
+	<bean name="pointsToNextLevelAttrHandler" 
+	      class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
 	
-		<bean name="pointsToNextLevelAttrHandler" 
-		      class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
-
 	<bean name="rewardStatusLevelConfigurationDao"
 		class="de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao">
 		<constructor-arg
@@ -481,5 +480,14 @@
 		<property name="categorySource" ref="bookstoreCategorySource" />
 	</bean>
 
+	<!-- TODO exercise 12.2: Uncomment and add your your code below -->
+	<!-- <bean id="..." class="....">
+    </bean>
 
+    <bean id="goldCustomerPrepareInterceptorMapping" class="...">
+        <property name="interceptor" ref="..."/>
+        <property name="typeCode" value="..."/>
+    </bean>
+     -->
+	
 </beans>
