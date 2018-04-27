@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 26-apr-2018 10.16.09                        ---
+ * --- Generated at 27-apr-2018 9.59.07                         ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;
@@ -9,9 +9,7 @@ package my.bookstore.core.jalo;
 import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.product.Product;
-import de.hybris.platform.jalo.type.CollectionType;
 import de.hybris.platform.jalo.user.User;
-import de.hybris.platform.util.OneToManyHandler;
 import de.hybris.platform.util.Utilities;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import my.bookstore.core.constants.BookstoreCoreConstants;
-import my.bookstore.core.jalo.Rental;
 
 /**
  * Generated class for type {@link de.hybris.platform.jalo.product.Product Book}.
@@ -31,8 +28,6 @@ public abstract class GeneratedBook extends Product
 	public static final String EDITION = "edition";
 	/** Qualifier of the <code>Book.publication</code> attribute **/
 	public static final String PUBLICATION = "publication";
-	/** Qualifier of the <code>Book.rentals</code> attribute **/
-	public static final String RENTALS = "rentals";
 	/** Qualifier of the <code>Book.authors</code> attribute **/
 	public static final String AUTHORS = "authors";
 	/** Relation ordering override parameter constants for Book2AuthorRelation from ((bookstorecore))*/
@@ -40,18 +35,6 @@ public abstract class GeneratedBook extends Product
 	protected static String BOOK2AUTHORRELATION_TGT_ORDERED = "relation.Book2AuthorRelation.target.ordered";
 	/** Relation disable markmodifed parameter constants for Book2AuthorRelation from ((bookstorecore))*/
 	protected static String BOOK2AUTHORRELATION_MARKMODIFIED = "relation.Book2AuthorRelation.markmodified";
-	/**
-	* {@link OneToManyHandler} for handling 1:n RENTALS's relation attributes from 'many' side.
-	**/
-	protected static final OneToManyHandler<Rental> RENTALSHANDLER = new OneToManyHandler<Rental>(
-	BookstoreCoreConstants.TC.RENTAL,
-	false,
-	"book",
-	null,
-	false,
-	true,
-	CollectionType.COLLECTION
-	);
 	protected static final Map<String, AttributeMode> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
@@ -192,7 +175,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>Book.edition</code> attribute.
-	 * @return the edition - Name of book edition
+	 * @return the edition - Book edition
 	 */
 	public String getEdition(final SessionContext ctx)
 	{
@@ -201,7 +184,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>Book.edition</code> attribute.
-	 * @return the edition - Name of book edition
+	 * @return the edition - Book edition
 	 */
 	public String getEdition()
 	{
@@ -210,7 +193,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>Book.edition</code> attribute. 
-	 * @param value the edition - Name of book edition
+	 * @param value the edition - Book edition
 	 */
 	public void setEdition(final SessionContext ctx, final String value)
 	{
@@ -219,7 +202,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>Book.edition</code> attribute. 
-	 * @param value the edition - Name of book edition
+	 * @param value the edition - Book edition
 	 */
 	public void setEdition(final String value)
 	{
@@ -228,7 +211,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>Book.publication</code> attribute.
-	 * @return the publication - Year of book publication
+	 * @return the publication - Book publication
 	 */
 	public Integer getPublication(final SessionContext ctx)
 	{
@@ -237,7 +220,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>Book.publication</code> attribute.
-	 * @return the publication - Year of book publication
+	 * @return the publication - Book publication
 	 */
 	public Integer getPublication()
 	{
@@ -246,7 +229,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>Book.publication</code> attribute. 
-	 * @return the publication - Year of book publication
+	 * @return the publication - Book publication
 	 */
 	public int getPublicationAsPrimitive(final SessionContext ctx)
 	{
@@ -256,7 +239,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Getter of the <code>Book.publication</code> attribute. 
-	 * @return the publication - Year of book publication
+	 * @return the publication - Book publication
 	 */
 	public int getPublicationAsPrimitive()
 	{
@@ -265,7 +248,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>Book.publication</code> attribute. 
-	 * @param value the publication - Year of book publication
+	 * @param value the publication - Book publication
 	 */
 	public void setPublication(final SessionContext ctx, final Integer value)
 	{
@@ -274,7 +257,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>Book.publication</code> attribute. 
-	 * @param value the publication - Year of book publication
+	 * @param value the publication - Book publication
 	 */
 	public void setPublication(final Integer value)
 	{
@@ -283,7 +266,7 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>Book.publication</code> attribute. 
-	 * @param value the publication - Year of book publication
+	 * @param value the publication - Book publication
 	 */
 	public void setPublication(final SessionContext ctx, final int value)
 	{
@@ -292,83 +275,11 @@ public abstract class GeneratedBook extends Product
 	
 	/**
 	 * <i>Generated method</i> - Setter of the <code>Book.publication</code> attribute. 
-	 * @param value the publication - Year of book publication
+	 * @param value the publication - Book publication
 	 */
 	public void setPublication(final int value)
 	{
 		setPublication( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Book.rentals</code> attribute.
-	 * @return the rentals
-	 */
-	public Collection<Rental> getRentals(final SessionContext ctx)
-	{
-		return RENTALSHANDLER.getValues( ctx, this );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>Book.rentals</code> attribute.
-	 * @return the rentals
-	 */
-	public Collection<Rental> getRentals()
-	{
-		return getRentals( getSession().getSessionContext() );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Book.rentals</code> attribute. 
-	 * @param value the rentals
-	 */
-	public void setRentals(final SessionContext ctx, final Collection<Rental> value)
-	{
-		RENTALSHANDLER.setValues( ctx, this, value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>Book.rentals</code> attribute. 
-	 * @param value the rentals
-	 */
-	public void setRentals(final Collection<Rental> value)
-	{
-		setRentals( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Adds <code>value</code> to rentals. 
-	 * @param value the item to add to rentals
-	 */
-	public void addToRentals(final SessionContext ctx, final Rental value)
-	{
-		RENTALSHANDLER.addValue( ctx, this, value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Adds <code>value</code> to rentals. 
-	 * @param value the item to add to rentals
-	 */
-	public void addToRentals(final Rental value)
-	{
-		addToRentals( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Removes <code>value</code> from rentals. 
-	 * @param value the item to remove from rentals
-	 */
-	public void removeFromRentals(final SessionContext ctx, final Rental value)
-	{
-		RENTALSHANDLER.removeValue( ctx, this, value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Removes <code>value</code> from rentals. 
-	 * @param value the item to remove from rentals
-	 */
-	public void removeFromRentals(final Rental value)
-	{
-		removeFromRentals( getSession().getSessionContext(), value );
 	}
 	
 }

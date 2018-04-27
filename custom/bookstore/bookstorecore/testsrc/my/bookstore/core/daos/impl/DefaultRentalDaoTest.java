@@ -1,10 +1,9 @@
-/**
- *
- */
+
 package my.bookstore.core.daos.impl;
 
 import static org.junit.Assert.fail;
 
+import de.hybris.bootstrap.annotations.IntegrationTest;
 import de.hybris.platform.catalog.CatalogService;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
@@ -36,20 +35,18 @@ import my.bookstore.core.model.RentalModel;
 
 
 /**
- * @author pvtagu
- *
- */
-/**
  * DefaultRentalDaoTest
  *
- * The following class supports a Test-Driven-Development (TDD) approach for the SAP Hybris Commerce Developer training,
+ * The following class supports a Tesd-Driven-Development (TDD) approach for the SAP Hybris Commerce Developer training,
  * part 1.
  *
  * It tests the getActiveRentalsForCustomer() and getMostRentedBooks() methods of the DefaultRentalDao class.
  *
  */
+@IntegrationTest
 public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 {
+
 	/**
 	 *
 	 */
@@ -92,8 +89,8 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 	 *
 	 * It populates the following lists (use them!):
 	 *
-	 * 1. activeRentalIds - a List<Integer> containing the rentalId of active rentals 2. inactiveRentalIds - a
-	 * List<Integer> containing the rentalId of inactive rentals
+	 * 1. activeRentalIds - a List<Integer> containing the rentalId of active rentals 2. inactiveRentalIds - a List
+	 * <Integer> containing the rentalId of inactive rentals
 	 *
 	 */
 
@@ -119,12 +116,6 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 			}
 
 		});
-
-		if (foundRentals == null)
-		{
-			fail("getActiveRentalsForCustomer() returned null");
-			return;
-		}
 
 		//    1.1 Fail if returned list includes ANY inactive rentals
 		for (final RentalModel rental : foundRentals)
@@ -175,12 +166,6 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		});
 
 
-		if (fiveMostRented == null)
-		{
-			fail("getMostRentedBooks() returned null");
-			return;
-		}
-
 		//    2.1 Fail if it doesn't return specified number of books (5)
 		if (fiveMostRented.size() != 5)
 		{
@@ -224,9 +209,9 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 	 * Creates a customer (Walt Whitman) who will be renting these books
 	 *
 	 * Creates both "active rentals" (where the current date falls between the start and end dates of the rental) and
-	 * inactive rentals. The rentalId of these are stored in the following lists: activeRentalIds - a List<Integer>
-	 * containing the rentalID of active rentals inactiveRentalIds - a List<Integer> containing the rentalID of inactive
-	 * rentals
+	 * inactive rentals. The rentalId of these are stored in the following lists: activeRentalIds - a List
+	 * <Integer> containing the rentalID of active rentals inactiveRentalIds - a List<Integer> containing the rentalID of
+	 * inactive rentals
 	 *
 	 * We will also create multiple rentals for some books, making it possible to determine our five "most rented" books.
 	 * We store the five most-rented books in the following list:
@@ -336,7 +321,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		RentalModel rental = modelService.create(RentalModel.class);
 		rental.setRentalId(101);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(past.getTime());
 		rental.setEndDate(future.getTime());
 		modelService.save(rental);
@@ -346,7 +331,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(102);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -355,7 +340,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(103);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(future.getTime());
 		rental.setEndDate(farFuture.getTime());
 		modelService.save(rental);
@@ -382,7 +367,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(104);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(past.getTime());
 		rental.setEndDate(future.getTime());
 		modelService.save(rental);
@@ -392,7 +377,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(105);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -401,7 +386,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(106);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(future.getTime());
 		rental.setEndDate(farFuture.getTime());
 		modelService.save(rental);
@@ -428,7 +413,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(107);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(past.getTime());
 		rental.setEndDate(future.getTime());
 		modelService.save(rental);
@@ -438,7 +423,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(108);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -465,7 +450,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(109);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(past.getTime());
 		rental.setEndDate(future.getTime());
 		modelService.save(rental);
@@ -475,7 +460,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(110);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -502,7 +487,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(111);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -526,7 +511,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(112);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -550,7 +535,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(113);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -574,7 +559,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(114);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(farPast.getTime());
 		rental.setEndDate(past.getTime());
 		modelService.save(rental);
@@ -583,7 +568,7 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		rental = modelService.create(RentalModel.class);
 		rental.setRentalId(115);
 		rental.setCustomer(customer);
-		rental.setBook(book);
+		rental.setProduct(book);
 		rental.setStartDate(future.getTime());
 		rental.setEndDate(farFuture.getTime());
 		modelService.save(rental);
@@ -628,5 +613,6 @@ public class DefaultRentalDaoTest extends ServicelayerTransactionalTest
 		modelService.save(author);
 
 	}
+
 
 }

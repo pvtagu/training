@@ -1,18 +1,6 @@
 /*
  * [y] hybris Platform
  *
- * Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
- * All rights reserved.
- *
- * This software is the confidential and proprietary information of SAP
- * ("Confidential Information"). You shall not disclose such Confidential
- * Information and shall use it only in accordance with the terms of the
- * license agreement you entered into with SAP.
- */
-
-/*
- * [y] hybris Platform
- *
  * Copyright (c) 2000-2014 hybris AG
  * All rights reserved.
  *
@@ -21,7 +9,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with hybris.
  *
- *
+ *  
  */
 package my.bookstore.initialdata.setup;
 
@@ -44,13 +32,14 @@ import java.util.List;
 
 import my.bookstore.initialdata.constants.BookstoreInitialDataConstants;
 
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
 
 /**
  * This class provides hooks into the system's initialization and update processes.
- *
+ * 
  * @see "https://wiki.hybris.com/display/release4/Hooks+for+Initialization+and+Update+Process"
  */
 @SystemSetup(extension = BookstoreInitialDataConstants.EXTENSIONNAME)
@@ -85,25 +74,11 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 		return params;
 	}
 
-	/**
-	 * Implement this method to create initial objects. This method will be called by system creator during
-	 * initialization and system update. Be sure that this method can be called repeatedly.
-	 *
-	 * @param context
-	 *           the context provides the selected parameters and values
-	 */
-//	@SystemSetup(type = Type.ESSENTIAL, process = Process.ALL)
-//	public void createEssentialData(final SystemSetupContext context)
-//	{
-//		// Add Essential Data here as you require
-//		importImpexFile(context, "/bookstoreinitialdata/import/verifyExercise/verifyExercises.impex");
-//
-//	}
 
 	/**
 	 * Implement this method to create data that is used in your project. This method will be called during the system
 	 * initialization.
-	 *
+	 * 
 	 * @param context
 	 *           the context provides the selected parameters and values
 	 */
@@ -114,7 +89,6 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	public void createProjectData(final SystemSetupContext context)
 	{
 		//There should be some change
-
 
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
@@ -129,6 +103,9 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 
 		getSampleDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
+		
+		//import rentals after catalog sync
+		importImpexFile(context, "/bookstoreinitialdata/import/sampledata/productCatalogs/bookstoreProductCatalog/rentals.impex");
 
 	}
 

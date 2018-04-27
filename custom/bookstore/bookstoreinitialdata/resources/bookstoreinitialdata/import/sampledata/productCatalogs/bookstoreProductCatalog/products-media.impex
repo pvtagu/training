@@ -1,21 +1,8 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
-# All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
-# ImPex for Importing Product Media
+# ImPex for Importing Product Media into Bookstore 
 
 # Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog]
-$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+$productCatalog=bookstoreProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $thumbnail=thumbnail(code, $catalogVersion)
 $picture=picture(code, $catalogVersion)
 $thumbnails=thumbnails(code, $catalogVersion)
@@ -25,13 +12,83 @@ $others=others(code, $catalogVersion)
 $data_sheet=data_sheet(code, $catalogVersion)
 $medias=medias(code, $catalogVersion)
 $galleryImages=galleryImages(qualifier, $catalogVersion)
-$siteResource=jar:my.bookstore.initialdata.setup.InitialDataSystemSetup&/bookstoreinitialdata/import/productCatalogs/$productCatalog
+$siteResource=jar:my.bookstore.initialdata.setup.InitialDataSystemSetup&/bookstoreinitialdata/import/sampledata/productCatalogs/$productCatalog
 
-# Create Media
-INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/jpeg'];$catalogVersion;folder(qualifier)
 
-# Create Media Containers
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)
+;300Wx300H;300Wx300H/a-polyglott-in-london.png;$siteResource/images/books/300Wx300H/a-polyglott-in-london.png;;;images
+;96Wx96H;96Wx96H/a-polyglott-in-london.png;$siteResource/images/books/96Wx96H/a-polyglott-in-london.png;;;images
+;300Wx300H;300Wx300H/chicken-or-egg.png;$siteResource/images/books/300Wx300H/chicken-or-egg.png;;;images
+;96Wx96H;96Wx96H/chicken-or-egg.png;$siteResource/images/books/96Wx96H/chicken-or-egg.png;;;images
+;300Wx300H;300Wx300H/generic-cover.jpg;$siteResource/images/books/300Wx300H/generic-cover.jpg;;;images
+;96Wx96H;96Wx96H/generic-cover.jpg;$siteResource/images/books/96Wx96H/generic-cover.jpg;;;images
+;300Wx300H;300Wx300H/history-pizza-wine.png;$siteResource/images/books/300Wx300H/history-pizza-wine.png;;;images
+;96Wx96H;96Wx96H/history-pizza-wine.png;$siteResource/images/books/96Wx96H/history-pizza-wine.png;;;images
+;300Wx300H;300Wx300H/hybris-all-in-one.jpg;$siteResource/images/books/300Wx300H/hybris-all-in-one.jpg;;;images
+;96Wx96H;96Wx96H/hybris-all-in-one.jpg;$siteResource/images/books/96Wx96H/hybris-all-in-one.jpg;;;images
+;300Wx300H;300Wx300H/ecommerce-murderess.jpg;$siteResource/images/books/300Wx300H/ecommerce-murderess.jpg;;;images
+;96Wx96H;96Wx96H/ecommerce-murderess.jpg;$siteResource/images/books/96Wx96H/ecommerce-murderess.jpg;;;images
+;300Wx300H;300Wx300H/the-programmer.jpg;$siteResource/images/books/300Wx300H/the-programmer.jpg;;;images
+;96Wx96H;96Wx96H/the-programmer.jpg;$siteResource/images/books/96Wx96H/the-programmer.jpg;;;images
+;300Wx300H;300Wx300H/trainers-secret.jpg;$siteResource/images/books/300Wx300H/trainers-secret.jpg;;;images
+;96Wx96H;96Wx96H/trainers-secret.jpg;$siteResource/images/books/96Wx96H/trainers-secret.jpg;;;images
+
+
+
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+;a-polyglott-in-london;300Wx300H/a-polyglott-in-london.png,96Wx96H/a-polyglott-in-london.png;
+;chicken-or-egg;300Wx300H/chicken-or-egg.png,96Wx96H/chicken-or-egg.png;
+;generic-cover;300Wx300H/generic-cover.jpg,96Wx96H/generic-cover.jpg;
+;history-pizza-wine;300Wx300H/history-pizza-wine.png,96Wx96H/history-pizza-wine.png;
+;hybris-all-in-one;300Wx300H/hybris-all-in-one.jpg,96Wx96H/hybris-all-in-one.jpg;
+;ecommerce-murderess;300Wx300H/ecommerce-murderess.jpg,96Wx96H/ecommerce-murderess.jpg;
+;the-programmer;300Wx300H/the-programmer.jpg,96Wx96H/the-programmer.jpg;
+;trainers-secret;300Wx300H/trainers-secret.jpg,96Wx96H/trainers-secret.jpg;
 
-# Update Products with Media and Media Containers
+
 UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+;8679478989;300Wx300H/a-polyglott-in-london.png;96Wx96H/a-polyglott-in-london.png;;300Wx300H/a-polyglott-in-london.png;300Wx300H/a-polyglott-in-london.png;96Wx96H/a-polyglott-in-london.png;a-polyglott-in-london;
+;9439522259;300Wx300H/chicken-or-egg.png;96Wx96H/chicken-or-egg.png;;300Wx300H/chicken-or-egg.png;300Wx300H/chicken-or-egg.png;96Wx96H/chicken-or-egg.png;chicken-or-egg;
+;8423207609;300Wx300H/history-pizza-wine.png;96Wx96H/history-pizza-wine.png;;300Wx300H/history-pizza-wine.png;300Wx300H/history-pizza-wine.png;96Wx96H/history-pizza-wine.png;history-pizza-wine;
+;5536152009;300Wx300H/hybris-all-in-one.jpg;96Wx96H/hybris-all-in-one.jpg;;300Wx300H/hybris-all-in-one.jpg;300Wx300H/hybris-all-in-one.jpg;96Wx96H/hybris-all-in-one.jpg;hybris-all-in-one;
+;6824238759;300Wx300H/ecommerce-murderess.jpg;96Wx96H/ecommerce-murderess.jpg;;300Wx300H/ecommerce-murderess.jpg;300Wx300H/ecommerce-murderess.jpg;96Wx96H/ecommerce-murderess.jpg;ecommerce-murderess;
+;6493374189;300Wx300H/the-programmer.jpg;96Wx96H/the-programmer.jpg;;300Wx300H/the-programmer.jpg;300Wx300H/the-programmer.jpg;96Wx96H/the-programmer.jpg;the-programmer;
+;6265644009;300Wx300H/trainers-secret.jpg;96Wx96H/trainers-secret.jpg;;300Wx300H/trainers-secret.jpg;300Wx300H/trainers-secret.jpg;96Wx96H/trainers-secret.jpg;trainers-secret;
+;8685677009 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;7313785739 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;5650539359 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;4729720539 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;4265613039 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;4678255109 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;4482249629 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;4445843199 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;4032442169 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;2761735269 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;2100149369 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;2066436119 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1984482769 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1829089579 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1753481309 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1863258019 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1728482569 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1670875989 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1666594679 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1664834729 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1632331179 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1601185839 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1501089889 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1470296489 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1435356489 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1426604629 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1389235939 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1381254829 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1343905869 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1274653819 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1259714799 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1219543179 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1210424959 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1178279359 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1109070349 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;2121888594 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+;1185574409 ;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;;300Wx300H/generic-cover.jpg;300Wx300H/generic-cover.jpg;96Wx96H/generic-cover.jpg;generic-cover;
+

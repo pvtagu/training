@@ -212,6 +212,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 #;;HeaderLinksSlot;ContactInfo
 ;;SearchBoxSlot;SearchBox
 ;;AddToCartSlot;AddToCart
+;;ProductLeftRefinements;RefinementFacetComponent
 
 
 
@@ -489,12 +490,11 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 ## TODO exercise 10.3: Use the following headers to define your component and its connection
 
-INSERT_UPDATE ProductRefinementComponent; $contentCV[unique=true] ; uid[unique=true] ; name ; &componentRef
-;;RefinementFacetComponent;Product Refinement Facet Component;RefinementFacetComponent
+INSERT_UPDATE ProductRefinementComponent;$contentCV[unique=true];uid[unique=true]        ;name                              ;&componentRef
+                                        ;                       ;RefinementFacetComponent;Product Refinement Facet Component;RefinementFacetComponent
 
-INSERT_UPDATE ContentSlot; $contentCV[unique=true] ; uid[unique=true] ; name ; active ; cmsComponents(&componentRef)
-;;ProductLeftRefinements;Slot for facets;true;RefinementFacetComponent
+INSERT_UPDATE ContentSlot           ; $contentCV[unique=true] ; uid[unique=true]              ; name                    ; active ; cmsComponents(&componentRef)
+                                    ;                         ; ProductLeftRefinements        ; Slot for facets         ; true   ; RefinementFacetComponent
 
-
-INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique=true] ; uid[unique=true] ; position[unique=true] ; pageTemplate(uid,$contentCV)[unique=true] ; contentSlot(uid,$contentCV)[unique=true] ; allowOverwrite
-;;ProductLeftRefinements-SearchResultsList;ProductLeftRefinements;SearchResultsListPageTemplate;ProductLeftRefinements;true
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true]                          ;position[unique=true]  ;pageTemplate(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+                                    ;                       ;ProductLeftRefinements-SearchResultsList  ;ProductLeftRefinements ;SearchResultsListPageTemplate            ;ProductLeftRefinements                  ;true

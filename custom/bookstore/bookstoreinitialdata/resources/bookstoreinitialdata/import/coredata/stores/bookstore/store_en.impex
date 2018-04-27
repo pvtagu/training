@@ -1,7 +1,6 @@
 #TODO exercise 9.1 Uncomment and modify the script
 
 $lang=en
-$storeUid=bookstore
 
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
-;$storeUid;Bookstore Store
+;bookstore;"Bookstore Store"

@@ -631,7 +631,7 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 ;;productGrid;Product Grid;ProductGridPageTemplate;false;
 ;;category;Default Category Page;CategoryPageTemplate;false;
 
-# TODO exercise 9.2: Create ContentPage homepage. Look above for samples!
+# TODO exercise 9.2: Create ContentPage homepage
 # uid: homepage
 # name: Homepage
 # masterTemplate: LandingPage2Template
@@ -642,6 +642,6 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 #
 # (Remember that the page needs to be loaded into a catalog.)
 
-INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;approvalStatus(code);defaultPage;homepage
-;;homepage;Homepage;LandingPage2Template;homepage;approved;true;true
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;homepage;Homepage;LandingPage2Template;homepage
 

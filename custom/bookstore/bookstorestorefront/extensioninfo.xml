@@ -12,7 +12,8 @@
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
 
 	<extension abstractclassprefix="Generated" classprefix="BookstoreStorefront" name="bookstorestorefront" usemaven="false">		
-        <requires-extension name="acceleratorstorefrontcommons"/>
+        <requires-extension name="liveeditaddon"/>
+<requires-extension name="acceleratorstorefrontcommons"/>
 		<requires-extension name="bookstorefacades"/>
 
 		<webmodule jspcompile="false" webroot="/bookstorestorefront"/>

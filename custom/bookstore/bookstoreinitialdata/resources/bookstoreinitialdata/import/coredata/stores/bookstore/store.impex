@@ -1,5 +1,5 @@
-#
-# Create the BaseStore bookstore
+# 
+# Create the BaseStore
 #
 
 
@@ -11,13 +11,11 @@
 # currencies(isocode): EUR
 # languages(isocode): en
 
-$storeUid=bookstore
-$lang=en
-
-$systemName=BookstoreClassification;
 $productCatalog=bookstoreProductCatalog
+$classificationCatalog=BookstoreClassification
+$storeUid=bookstore
+$defaultCurrency=EUR
+$defaultLanguage=en
 
-
-INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id)[unique=true];defaultCurrency(isocode);defaultLanguage(isocode);currencies(isocode);languages(isocode)
-;$storeUid;$systemName,$productCatalog;EUR;$lang;EUR;$lang
-
+INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);defaultCurrency(isocode);defaultLanguage(isocode);currencies(isocode);languages(isocode)
+;$storeUid;$productCatalog,$classificationCatalog;$defaultCurrency;$defaultLanguage;$defaultCurrency;$defaultLanguage

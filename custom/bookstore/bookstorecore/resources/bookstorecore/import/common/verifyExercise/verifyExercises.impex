@@ -1,0 +1,30 @@
+INSERT_UPDATE Script; code[unique=true]; active[unique=true]; scriptType(code); content
+"#% beforeEach:
+import my.bookstore.core.setup.CoreSystemSetup;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import java.io.IOException;
+String path = line.get(Integer.valueOf(4));
+if(StringUtils.isNotBlank(path) )
+{
+
+      try
+		{
+			InputStream is=CoreSystemSetup.class.getResourceAsStream(path);
+			line.put(Integer.valueOf(4),IOUtils.toString(is,""utf-8""));
+
+  		}catch (IOException e){
+			e.printStackTrace();
+		}
+}"
+
+;verifyExercise12 - Pricing; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise12.groovy
+;verifyExercise13 - Vouchers and Promotions; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise13.groovy
+;verifyExercise14 - Payment; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise14.groovy
+;verifyExercise15 - Order Management - Process Engine; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise15.groovy
+;verifyExercise16 - CronJobs; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise16.groovy
+;verifyExercise17 - Workflow; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise17.groovy
+;verifyExercise18 - WCMS and AddOns; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise18.groovy
+;verifyExercise19 - Advanced Personalization; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise19.groovy
+;verifyExercise20 - Backoffice; true; GROOVY;/bookstorecore/import/common/verifyExercise/verifyExercise20.groovy
+#% beforeEach:end

@@ -13,9 +13,9 @@ INSERT_UPDATE User;uid[unique=true];name
 ;Dale Carnaby;Dale Carnaby
 
 
-INSERT_UPDATE Book;code[unique=true];name[lang=$lang];$supercategories;unit(code)[default=pieces];$approved;$catalogVersion;rentable;rewardPoints;ISBN10;ISBN13;language;publisher;authors(uid)
-;8942944779;The Strange Case of the Disappearing hybris Website;mystery,audioCD;;;;true;10;8942944779;3338942944779;$lang;Pinniped;
-;1013742419;Withering Heights;drama,audioCD;;;;true;12;1013742419;3331013742419;$lang;Hybris Classics Library;Charlotte T. Bron,Dale Carnaby
+INSERT_UPDATE Book;code[unique=true];name[lang=$lang];$supercategories;$approved;$catalogVersion;rentable;rewardPoints;ISBN10;ISBN13;language;publisher;authors(uid);unit(code)[default=pieces]
+;8942944779;The Strange Case of the Disappearing hybris Website;mystery,audioCD;;;true;10;8942944779;3338942944779;$lang;Pinniped;;
+;1013742419;Withering Heights;drama,audioCD;;;true;12;1013742419;3331013742419;$lang;Hybris Classics Library;Charlotte T. Bron,Dale Carnaby;
 
 #insert authors
 INSERT_UPDATE User;uid[unique=true];name

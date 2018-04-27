@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 26-apr-2018 10.16.09                        ---
+ * --- Generated at 27-apr-2018 9.59.07                         ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.core.jalo;
@@ -45,6 +45,18 @@ import my.bookstore.core.jalo.RewardStatusLevelConfiguration;
 @SuppressWarnings({"deprecation","unused","cast","PMD"})
 public abstract class GeneratedBookstoreCoreManager extends Extension
 {
+	/**
+	* {@link OneToManyHandler} for handling 1:n RENTALS's relation attributes from 'many' side.
+	**/
+	protected static final OneToManyHandler<Rental> RENTAL2PRODUCTRELATIONRENTALSHANDLER = new OneToManyHandler<Rental>(
+	BookstoreCoreConstants.TC.RENTAL,
+	false,
+	"product",
+	null,
+	false,
+	true,
+	CollectionType.COLLECTION
+	);
 	/**
 	* {@link OneToManyHandler} for handling 1:n RENTALS's relation attributes from 'many' side.
 	**/
@@ -767,6 +779,78 @@ public abstract class GeneratedBookstoreCoreManager extends Extension
 	public void setRentable(final Product item, final boolean value)
 	{
 		setRentable( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.rentals</code> attribute.
+	 * @return the rentals
+	 */
+	public Collection<Rental> getRentals(final SessionContext ctx, final Product item)
+	{
+		return RENTAL2PRODUCTRELATIONRENTALSHANDLER.getValues( ctx, item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.rentals</code> attribute.
+	 * @return the rentals
+	 */
+	public Collection<Rental> getRentals(final Product item)
+	{
+		return getRentals( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.rentals</code> attribute. 
+	 * @param value the rentals
+	 */
+	public void setRentals(final SessionContext ctx, final Product item, final Collection<Rental> value)
+	{
+		RENTAL2PRODUCTRELATIONRENTALSHANDLER.setValues( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.rentals</code> attribute. 
+	 * @param value the rentals
+	 */
+	public void setRentals(final Product item, final Collection<Rental> value)
+	{
+		setRentals( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to rentals. 
+	 * @param value the item to add to rentals
+	 */
+	public void addToRentals(final SessionContext ctx, final Product item, final Rental value)
+	{
+		RENTAL2PRODUCTRELATIONRENTALSHANDLER.addValue( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to rentals. 
+	 * @param value the item to add to rentals
+	 */
+	public void addToRentals(final Product item, final Rental value)
+	{
+		addToRentals( getSession().getSessionContext(), item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from rentals. 
+	 * @param value the item to remove from rentals
+	 */
+	public void removeFromRentals(final SessionContext ctx, final Product item, final Rental value)
+	{
+		RENTAL2PRODUCTRELATIONRENTALSHANDLER.removeValue( ctx, item, value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from rentals. 
+	 * @param value the item to remove from rentals
+	 */
+	public void removeFromRentals(final Product item, final Rental value)
+	{
+		removeFromRentals( getSession().getSessionContext(), item, value );
 	}
 	
 	/**

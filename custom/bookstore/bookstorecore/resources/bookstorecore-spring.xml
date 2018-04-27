@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  [y] hybris Platform
+
  Copyright (c) 2000-2015 hybris AG
  All rights reserved.
+
  This software is the confidential and proprietary information of hybris
  ("Confidential Information"). You shall not disclose such Confidential
  Information and shall use it only in accordance with the terms of the
@@ -433,11 +435,11 @@
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="rootCategoryCode" value="categories"/>
 	</bean>
-	
+
 	<!-- bookstore specific configuration -->
 	
-	<bean name="pointsToNextLevelAttrHandler" 
-	      class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
+		<bean name="pointsToNextLevelAttrHandler" 
+		      class="my.bookstore.core.attributehandlers.PointsToNextLevelAttrHandler" />
 
 	<bean name="rewardStatusLevelConfigurationDao"
 		class="de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao">
@@ -446,9 +448,8 @@
 	</bean>
 
 	<alias alias="rentalDao" name="defaultRentalDao" />
-	<bean id="defaultRentalDao" class="my.bookstore.core.daos.impl.DefaultRentalDao" 
-	      parent="abstractItemDao">
-		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	<bean id="defaultRentalDao" class="my.bookstore.core.daos.impl.DefaultRentalDao"
+		parent="abstractItemDao">
 	</bean>
 
 	<bean name="customerDao"
@@ -456,11 +457,7 @@
 		<constructor-arg
 			value="#{T(de.hybris.platform.core.model.user.CustomerModel). _TYPECODE}" />
 	</bean>
-	
-	<!-- TODO exercise 6.3 -->
-	<!-- Uncomment the code below and add your implementation -->
-	
-	<!-- TODO exercise 6.1 -->
+
 	<alias alias="bookstoreCustomerAccountService" name="defaultBookstoreCustomerAccountService" />
 	<bean id="defaultBookstoreCustomerAccountService"
 		class="my.bookstore.core.services.impl.DefaultBookstoreCustomerAccountService"
@@ -470,10 +467,9 @@
 
 	<alias alias="rentalService" name="defaultRentalService" />
 	<bean id="defaultRentalService" class="my.bookstore.core.services.impl.DefaultRentalService">
-		<!-- TODO exercise 6.4: add necessary properties -->
 		<property name="rentalDao" ref="rentalDao" />
 	</bean>
-	
+
 	<bean id="bookstoreCategorySource" parent="abstractCategorySource">
 	</bean>
 
@@ -484,5 +480,6 @@
 	<bean id="bookstoreCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
 		<property name="categorySource" ref="bookstoreCategorySource" />
 	</bean>
+
 
 </beans>

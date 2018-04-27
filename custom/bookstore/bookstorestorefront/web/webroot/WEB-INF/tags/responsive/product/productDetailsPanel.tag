@@ -5,50 +5,51 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 
 
-<div class="product-details page-title">
+<div class="product-details">
 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
-		<div class="name">${product.name} <span class="sku">ID</span><span class="code">${product.code}</span></div>
+		<div class="name">${product.name} <span class="sku">ID ${product.code}</span></div>
+		<div>ISBN10: ${product.ISBN10}</div>
+		<div>ISBN13: ${product.ISBN13}</div>
+		<div>Publisher: ${product.publisher}</div>
+		<div>Language: ${product.language}</div>
+		<div>Reward points: ${product.rewardPoints}</div>
+		<div>Rentable: ${product.rentable}</div>
 	</ycommerce:testId>
-	<product:productReviewSummary product="${product}" showLinks="true"/>
 
 </div>
 <div class="row">
-	<div class="col-xs-10 col-xs-push-1 col-sm-6 col-sm-push-0 col-lg-4">
+	<div class="col-md-6 col-lg-4">
 		<product:productImagePanel galleryImages="${galleryImages}"
 			product="${product}" />
 	</div>
-	<div class="clearfix hidden-sm hidden-md hidden-lg"></div>
-	<div class="col-sm-6 col-lg-8">
-		<div class="product-main-info">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="product-details">
-						<product:productPromotionSection product="${product}"/>
+	<div class="col-md-6 col-lg-8">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="product-details">
+					<product:productPromotionSection product="${product}"/>
 
-						<ycommerce:testId
-								code="productDetails_productNamePrice_label_${product.code}">
-							<product:productPricePanel product="${product}" />
-						</ycommerce:testId>
+					<ycommerce:testId
+						code="productDetails_productNamePrice_label_${product.code}">
+						<product:productPricePanel product="${product}" />
+					</ycommerce:testId>
 
-						<div class="description">${product.summary}</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-9 col-lg-6">
-
-							<cms:pageSlot position="VariantSelector" var="component" element="div" class="page-details-variants-select">
-								<cms:component component="${component}" element="div" class="yComponentWrapper page-details-variants-select-component"/>
-							</cms:pageSlot>
-
-
-
-							<cms:pageSlot position="AddToCart" var="component" element="div" class="page-details-variants-select">
-								<cms:component component="${component}" element="div" class="yComponentWrapper page-details-add-to-cart-component"/>
-							</cms:pageSlot>
-
+					<div class="description">${product.summary}</div>
+					
 				</div>
 			</div>
-		</div>
 
+			<div class="col-lg-6">
+
+				<cms:pageSlot position="VariantSelector" var="component">
+					<cms:component component="${component}" />
+				</cms:pageSlot>
+
+				<cms:pageSlot position="AddToCart" var="component">
+					<cms:component component="${component}" />
+				</cms:pageSlot>
+
+			</div>
+		</div>
 	</div>
 </div>
+

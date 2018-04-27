@@ -1,7 +1,3 @@
-/**
-
- *
- */
 package my.bookstore.core.services.impl;
 
 import de.hybris.platform.commerceservices.customer.impl.DefaultCustomerAccountService;
@@ -14,69 +10,57 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Required;
-
 import my.bookstore.core.enums.RewardStatusLevel;
 import my.bookstore.core.model.BookModel;
 import my.bookstore.core.services.BookstoreCustomerAccountService;
 
 
-/**
- * @author pvtagu
- *
- */
-public class DefaultBookstoreCustomerAccountService extends DefaultCustomerAccountService
-		implements BookstoreCustomerAccountService
+public class DefaultBookstoreCustomerAccountService extends DefaultCustomerAccountService implements
+		BookstoreCustomerAccountService
 {
-	public DefaultGenericDao<CustomerModel> customerDao;
 
-	@SuppressWarnings("boxing")
+	private DefaultGenericDao<CustomerModel> customerDao;
+
 	@Override
 	public void updateRewardStatusPoints(final CustomerModel customer, final OrderModel order)
 	{
-		int total = 0; //represents total number of point that Customer will get for this order
+		int total = 0; //represent total number of point that Customer will get for this order
 		for (final AbstractOrderEntryModel entry : order.getEntries())
 		{
-			final BookModel book = (BookModel) entry.getProduct();
-			total += book.getRewardPoints() * entry.getQuantity();
+			final Object product = entry.getProduct();
+			if (product instanceof BookModel) {
+				total += ((BookModel) product).getRewardPoints() * entry.getQuantity();
+			}
 		}
-
-		customer.setPoints(Integer.valueOf(total));
+		// TODO exercise 6.2 : update customer points
+		customer.setPoints(customer.getPoints() + total);
 		getModelService().save(customer);
-
 	}
 
-	@Override
 	public List<CustomerModel> getAllCustomersForLevel(final RewardStatusLevel level)
 	{
 		// TODO exercise 6.3 : implement the method
-		//		final String queryString = "SELECT {c.PK}"
-		//											+ "FROM {customer as c JOIN RewardStatusLevel as r "
-		//											+ "on {c.RewardStatusLevel} = {r.PK}}"
-		//											+ "WHERE {r.code} = ?code";
-		//
-		//		FlexibleSearchQuery fsq = (FlexibleSearchQuery) getFlexibleSearchService().search(queryString);
-		//
-		//		fsq.addQueryParameter("code", level.getCode());
-		//
-		//		return getFlexibleSearchService().<CustomerModel> search(fsq).getResult();
-
-		final Map<String, Object> params = new HashMap<>();
+		final Map<String, RewardStatusLevel> params = new HashMap<String, RewardStatusLevel>();
 		params.put(CustomerModel.REWARDSTATUSLEVEL, level);
-		final List<CustomerModel> customersForLevel = customerDao.find(params);
+		return getCustomerDao().find(params);
+	}
 
-		return customersForLevel;
 
+	/**
+	 * @return the customerDao
+	 */
+	public DefaultGenericDao<CustomerModel> getCustomerDao()
+	{
+		return customerDao;
 	}
 
 	/**
-	 * @param customerDao
-	 *           the customerDao to set
+	 * @param customerDao - the customerDao to set
 	 */
-	@Required
-	public void setCustomerDao(final DefaultGenericDao<CustomerModel> customerDao)
+	public void setCustomerDao(DefaultGenericDao<CustomerModel> customerDao)
 	{
 		this.customerDao = customerDao;
 	}
+
 
 }

@@ -10,6 +10,10 @@
 	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="src" />
 	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
 	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="gensrc" />
+	
+	<classpathentry combineaccessrules="false" kind="src" path="/bookstorefulfilmentprocess"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/couponservices"/>
+	
 				
 </classpath>
 				

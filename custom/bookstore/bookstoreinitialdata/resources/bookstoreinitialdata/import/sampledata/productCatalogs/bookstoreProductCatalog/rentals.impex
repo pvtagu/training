@@ -1,0 +1,23 @@
+# ImpEx for Importing Products
+
+$productCatalog=bookstoreProductCatalog
+$onlineCatVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+$lang=en
+
+#Insert rentals
+
+INSERT_UPDATE Rental;rentalId[unique=true];startDate[dateformat=dd.MM.yyyy];endDate[dateformat=dd.MM.yyyy];product(code,$onlineCatVersion);customer(uid)
+;101;10.10.2014;10.11.2030;2121888594;john@hybris.com
+;201;10.10.2014;10.11.2030;9439522259;john@hybris.com
+;301;10.06.2014;15.06.2030;8679478989;lena@hybris.com
+;401;10.05.2014;15.05.2030;9439522259;sabine@hybris.com
+;501;10.08.2014;10.11.2014;6493374189;lena@hybris.com
+;601;12.01.2014;10.02.2014;9439522259;john@hybris.com
+;701;10.03.2014;10.04.2014;6493374189;sabine@hybris.com
+;801;10.06.2014;15.06.2014;6493374189;john@hybris.com
+;901;10.07.2014;20.07.2014;4678255109;sabine@hybris.com
+;1001;03.03.2014;13.03.2014;4032442169;sabine@hybris.com
+;11001;10.04.2014;10.05.2014;1863258019;lena@hybris.com

@@ -1,7 +1,7 @@
 /*
  * [y] hybris Platform
  *
- * Copyright (c) 2000-2014 hybris AG
+ * Copyright (c) 2000-2016 hybris AG
  * All rights reserved.
  *
  * This software is the confidential and proprietary information of hybris
@@ -55,8 +55,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		importImpexFile(context, "/bookstorecore/import/common/themes.impex");
 		importImpexFile(context, "/bookstorecore/import/common/user-groups.impex");
-
-
 	}
 
 	/**
@@ -66,13 +64,21 @@ public class CoreSystemSetup extends AbstractSystemSetup
 	@SystemSetupParameterMethod
 	public List<SystemSetupParameter> getInitializationOptions()
 	{
-		final List<SystemSetupParameter> params = new ArrayList<SystemSetupParameter>();
+		final List<SystemSetupParameter> params = new ArrayList<>();
 
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_VERIFICATION_SCRIPTS, "Import TrainingLabTools Verification Scripts",
+				false));
 
 		return params;
 	}
 
+	/**
+	 * This method will be called during the system initialization and update.
+	 *
+	 * @param context
+	 *           the context provides the selected parameters and values
+	 */
 	@SystemSetup(type = Type.PROJECT, process = Process.ALL)
 	public void createProjectData(final SystemSetupContext context)
 	{
@@ -81,54 +87,54 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		final List<String> extensionNames = getExtensionNames();
 
 
-		//Process.INIT means: applies to System Initialization operation,
-		//Process.UPDATE means: applies to UpdateSystem operation with 'Update Running System' parameter = true
-		//Process.ALL means: applies to all System Initialization / System Update operations
-		//                   (regardless of value of 'Update Running System parameter')
+		//Process.INIT means System Initialization operation,
+		//Process.UPDATE means 'Update Running System' = true for System Update operation
+		//Process.ALL means 'Update Running System' = false for System Update operation
 		if (context.getProcess() == Process.INIT || getBooleanSystemSetupParameter(context, IMPORT_VERIFICATION_SCRIPTS))
 		{
 			importImpexFile(context, "/bookstorecore/import/common/verifyExercise/verifyExercises.impex");
 		}
+		
 
-		if (importAccessRights && extensionNames.contains("cmscockpit"))
-		{
-			importImpexFile(context, "/bookstorecore/import/cockpits/cmscockpit/cmscockpit-users.impex");
-			importImpexFile(context, "/bookstorecore/import/cockpits/cmscockpit/cmscockpit-access-rights.impex");
-		}
+		processCockpit(context, importAccessRights, extensionNames, "cmscockpit",
+				"/bookstorecore/import/cockpits/cmscockpit/cmscockpit-users.impex",
+				"/bookstorecore/import/cockpits/cmscockpit/cmscockpit-access-rights.impex");
 
-		if (importAccessRights && extensionNames.contains("btgcockpit"))
-		{
-			importImpexFile(context, "/bookstorecore/import/cockpits/cmscockpit/btgcockpit-users.impex");
-			importImpexFile(context, "/bookstorecore/import/cockpits/cmscockpit/btgcockpit-access-rights.impex");
-		}
+		processCockpit(context, importAccessRights, extensionNames, "btgcockpit",
+				"/bookstorecore/import/cockpits/cmscockpit/btgcockpit-users.impex",
+				"/bookstorecore/import/cockpits/cmscockpit/btgcockpit-access-rights.impex");
 
-		if (importAccessRights && extensionNames.contains("productcockpit"))
-		{
-			importImpexFile(context, "/bookstorecore/import/cockpits/productcockpit/productcockpit-users.impex");
-			importImpexFile(context, "/bookstorecore/import/cockpits/productcockpit/productcockpit-access-rights.impex");
-			importImpexFile(context, "/bookstorecore/import/cockpits/productcockpit/productcockpit-constraints.impex");
-		}
+		processCockpit(context, importAccessRights, extensionNames, "productcockpit",
+				"/bookstorecore/import/cockpits/productcockpit/productcockpit-users.impex",
+				"/bookstorecore/import/cockpits/productcockpit/productcockpit-access-rights.impex",
+				"/bookstorecore/import/cockpits/productcockpit/productcockpit-constraints.impex");
 
-		if (importAccessRights && extensionNames.contains("cscockpit"))
-		{
-			importImpexFile(context, "/bookstorecore/import/cockpits/cscockpit/cscockpit-users.impex");
-			importImpexFile(context, "/bookstorecore/import/cockpits/cscockpit/cscockpit-access-rights.impex");
-		}
+		processCockpit(context, importAccessRights, extensionNames, "cscockpit",
+				"/bookstorecore/import/cockpits/cscockpit/cscockpit-users.impex",
+				"/bookstorecore/import/cockpits/cscockpit/cscockpit-access-rights.impex");
 
-		if (importAccessRights && extensionNames.contains("reportcockpit"))
-		{
-			importImpexFile(context, "/bookstorecore/import/cockpits/reportcockpit/reportcockpit-users.impex");
-			importImpexFile(context, "/bookstorecore/import/cockpits/reportcockpit/reportcockpit-access-rights.impex");
-		}
+		processCockpit(context, importAccessRights, extensionNames, "reportcockpit",
+				"/bookstorecore/import/cockpits/reportcockpit/reportcockpit-users.impex",
+				"/bookstorecore/import/cockpits/reportcockpit/reportcockpit-access-rights.impex");
 
 		if (extensionNames.contains("mcc"))
 		{
 			importImpexFile(context, "/bookstorecore/import/common/mcc-sites-links.impex");
 		}
 
-		importImpexFile(context, "/bookstorecore/import/common/projectdataSecurity.impex");
 	}
 
+	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,
+			final List<String> extensionNames, final String cockpit, final String... files)
+	{
+		if (importAccessRights && extensionNames.contains(cockpit))
+		{
+			for (final String file : files)
+			{
+				importImpexFile(context, file);
+			}
+		}
+	}
 
 	protected List<String> getExtensionNames()
 	{

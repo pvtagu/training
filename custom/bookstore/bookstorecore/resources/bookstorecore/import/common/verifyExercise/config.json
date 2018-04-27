@@ -1,0 +1,19 @@
+{
+  "init": "Go",
+  "initmethod": "update",
+  "essential": "true",
+  "localizetypes": "true",
+  "droolsruleengineservices_sample": "true",
+  "couponfacades_sample": "true",
+  "promotionengineservices_sample": "true",  
+  "promotionenginesamplesaddon_sample": "true",
+  "couponbackoffice_sample": "true",
+  "rulebuilderbackoffice_sample": "true",
+  "bookstorecore_sample": "false",
+  "bookstorecore_accessRights": [
+    "no"
+  ],
+  "bookstorecore_verificationScripts": [
+    "yes"
+  ]
+}

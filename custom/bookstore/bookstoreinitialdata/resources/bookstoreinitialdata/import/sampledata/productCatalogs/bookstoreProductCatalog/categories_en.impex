@@ -1,14 +1,3 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
-# All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
 # ImpEx for Importing Categories
 
 # Macros / Replacement Parameter definitions
@@ -25,6 +14,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;fiction;;Fiction
 ;crime;;Crime
 ;horror;;Horror
+;mystery;;Mystery
 ;romance;;Romance
 ;sciencefiction;;Science-Fiction
 ;western;;Western
@@ -43,3 +33,4 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;history;;History
 ;philosophy;;Philosophy
 ;self-help;;Self-Help
+;audioCD;;Audio CD

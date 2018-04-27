@@ -1,14 +1,3 @@
-# -----------------------------------------------------------------------
-# [y] hybris Platform
-#
-# Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
-# All rights reserved.
-#
-# This software is the confidential and proprietary information of SAP
-# ("Confidential Information"). You shall not disclose such Confidential
-# Information and shall use it only in accordance with the terms of the
-# license agreement you entered into with SAP.
-# -----------------------------------------------------------------------
 # ImpEx for Importing Category Classifications
 
 # Macros / Replacement Parameter definitions
@@ -28,6 +17,17 @@ UPDATE ClassificationClass;code[unique=true];$classCatalogVersion;name[lang=$lan
 ;digitalclassification;;Digital Classification
 
 # Insert Classification Attributes
-UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
-;DRM;;DRM
-;pages;;Pages
+UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVersion
+;DRM;DRM
+;pages;Pages
+;filesize;File Size
+;deliveryFormat;Delivery Format
+;length;Length
+
+# Insert Classification Units
+#INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];name;symbol;$classSystemVersion
+#;scheme;Scheme;scheme
+#;pages;Pages;pages
+#;MB;Megabytes;MB
+#;duration;Duration;HH:mm:ss
+#;format;Format;format

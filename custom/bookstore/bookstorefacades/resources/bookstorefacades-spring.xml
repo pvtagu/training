@@ -95,12 +95,10 @@
 	<bean id="searchResultProductRewardPointsPopulator" class="my.bookstore.facades.populators.SearchResultProductRewardPointsPopulator" >
 	</bean>
 
-
 	<bean parent="modifyPopulatorList">
-		<property name="list" ref="commerceSearchResultProductConverter" />
-		<property name="add" ref="searchResultProductRewardPointsPopulator" />
+		<property name="list" ref="commerceSearchResultProductConverter"/>
+		<property name="add" ref="searchResultProductRewardPointsPopulator"/>
 	</bean>
-
 	
 	<bean id="customerPointsPopulator" class="my.bookstore.facades.populators.CustomerPointsPopulator"/>
  

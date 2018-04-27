@@ -12,18 +12,17 @@
  *
  */
 package my.bookstore.facades.populators;
-
+ 
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
-
-
+ 
 public class CustomerPointsPopulator implements Populator<CustomerModel, CustomerData>
 {
-	@Override
-	public void populate(final CustomerModel source, final CustomerData target) throws ConversionException
-	{
-		target.setPoints(source.getPoints() == null ? Integer.valueOf(0) : source.getPoints());
-	}
+    @Override
+    public void populate(final CustomerModel source, final CustomerData target) throws ConversionException
+    {
+        target.setPoints(source.getPoints() == null ? Integer.valueOf(0) : source.getPoints());
+    }
 }

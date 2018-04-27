@@ -35,7 +35,6 @@ import org.junit.Test;
 
 import my.bookstore.core.enums.RewardStatusLevel;
 import my.bookstore.core.model.BookModel;
-import my.bookstore.core.services.BookstoreCustomerAccountService;
 
 
 /**
@@ -68,7 +67,7 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	private FlexibleSearchService flexibleSearchService;
 
 	@Resource
-	BookstoreCustomerAccountService bookstoreCustomerAccountService;
+	DefaultBookstoreCustomerAccountService defaultBookstoreCustomerAccountService;
 
 	@Resource
 	EnumerationService enumerationService;
@@ -95,20 +94,29 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	 *
 	 */
 
-	@SuppressWarnings("boxing")
 	@Test
 	public void testUpdateRewardStatusPoints()
 	{
 		// Setup: we need a customer and an order (including order entries, books, units and a currency).
 		initializeOrder();
 
-		bookstoreCustomerAccountService.updateRewardStatusPoints(customer, order);
+		/*
+		 * --------------------------------------------------------------------------------------------------- TODO
+		 * exercise 6.2: Pass in an order and check that the customer's points are updated by the total points of the
+		 * books in the order (and accounting for the quantity of each book).
+		 */
+		// 1. Call updateRewardStatusPoints() method
+		defaultBookstoreCustomerAccountService.updateRewardStatusPoints(customer, order);
 
-		if (!customer.getPoints().equals(Integer.valueOf(70)))
+		// 2. Make sure the customer's point total is the sum of the books in the order
+		if (customer.getPoints() == 55)
+		{
+			fail("Customer was not awarded the correct number of points -- Remember: there are 2 copies of book 2 in the order!");
+		}
+		else if (customer.getPoints() != 70)
 		{
 			fail("Customer was not awarded the correct number of points");
 		}
-
 	}
 
 
@@ -125,19 +133,31 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	@Test
 	public void testGetAllCustomersForLevel()
 	{
+
 		// Setup: we need a few customers with various reward levels.
 		initializeCustomers();
 
-		final List<CustomerModel> goldCustomersModel = bookstoreCustomerAccountService.getAllCustomersForLevel(gold);
+		/*
+		 * --------------------------------------------------------------------------------------------------- TODO
+		 * exercise 6.3: get all the gold-level customers. Our initializeCustomers() method has created five customers,
+		 * three of them gold. It populated the following list:
+		 *
+		 * goldCustomerIds -- The Ids of the customers with reward status level GOLD
+		 */
 
-		for (final CustomerModel customer : goldCustomersModel)
+		// 1. Call getAllCustomersForLevel() method
+		final List<CustomerModel> goldCustomers = defaultBookstoreCustomerAccountService.getAllCustomersForLevel(gold);
+
+		// 2. Compare the UIDs of the returned customers with the goldCustomerIds list
+		final List<String> returnedIds = new ArrayList<String>();
+		for (final CustomerModel goldCustomer : goldCustomers)
 		{
-			if (!goldCustomerIds.contains(customer.getUid()))
-			{
-				fail("The getAllCustomersForLevel did not correctly return all the gold customers.");
-			}
+			returnedIds.add(goldCustomer.getUid());
 		}
-
+		if (!goldCustomerIds.containsAll(returnedIds))
+		{
+			fail("The getAllCustomersForLevel did not return the correct number of customers.");
+		}
 	}
 
 
@@ -159,10 +179,10 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	/**
 	 * initializeOrder
 	 *
-	 * Create the objects necessary to test the UpdateRewardStatusPoints() method.
+	 * Create the objects necessary to test the updateRewardStatusPoints() method.
 	 *
-	 * Customer Order - Currency - entries OrderEntry1 Book (rewardPoints=40) quantity=1 unit=pieces OrderEntry2 Book
-	 * (rewardPoints=15) quantity=2 unit=pieces
+	 * - Customer - Order Currency entries OrderEntry1 Book (rewardPoints=40) quantity=1 Unit OrderEntry2 Book
+	 * (rewardPoints=15) quantity=2 Unit
 	 *
 	 */
 	private void initializeOrder()
@@ -239,35 +259,19 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 
 		FlexibleSearchQuery query = new FlexibleSearchQuery("SELECT {pk} FROM {Unit} WHERE {code} = 'pieces'");
 		final List<UnitModel> units = flexibleSearchService.<UnitModel> search(query).getResult();
-		UnitModel pieces;
 		if (units.isEmpty())
 		{
-			final UnitModel unit = modelService.create(UnitModel.class);
-			unit.setCode("pieces");
-			unit.setUnitType("pieces");
-			modelService.save(unit);
-			pieces = unit;
+			fail("Can't locate the 'pieces' Unit");
 		}
-		else
-		{
-			pieces = units.get(0);
-		}
-
+		final UnitModel pieces = units.get(0);
 
 		query = new FlexibleSearchQuery("SELECT {pk} FROM {Currency} WHERE {isocode} = 'USD'");
 		final List<CurrencyModel> currencies = flexibleSearchService.<CurrencyModel> search(query).getResult();
-		CurrencyModel usd;
 		if (currencies.isEmpty())
 		{
-			final CurrencyModel currency = modelService.create(CurrencyModel.class);
-			currency.setIsocode("USD");
-			modelService.save(currency);
-			usd = currency;
+			fail("Can't locate the 'USD' Currency");
 		}
-		else
-		{
-			usd = currencies.get(0);
-		}
+		final CurrencyModel usd = currencies.get(0);
 
 		//Create an Order
 		order = modelService.create(OrderModel.class);
@@ -318,6 +322,7 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 	 */
 	private void initializeCustomers()
 	{
+
 		// Initialize variable for the reward status levels
 		blue = enumerationService.getEnumerationValue("RewardStatusLevel", "BLUE");
 		silver = enumerationService.getEnumerationValue("RewardStatusLevel", "SILVER");
@@ -327,17 +332,13 @@ public class DefaultBookstoreCustomerAccountServiceTest extends ServicelayerTran
 		// (remember: since we extend ServicelayerTransactionalTest, our changes are rolled back automatically)
 		final FlexibleSearchQuery query = new FlexibleSearchQuery("SELECT {pk} FROM {Customer}");
 		final List<CustomerModel> existingCustomers = flexibleSearchService.<CustomerModel> search(query).getResult();
-
 		for (final CustomerModel cust : existingCustomers)
 		{
 			if (!cust.getUid().equals("anonymous"))
 			{
-				modelService.removeAll(cust.getOrders());
-				modelService.removeAll(cust.getCarts());
 				modelService.remove(cust);
 			}
 		}
-
 
 		// Create a BLUE customer
 		customer = modelService.create(CustomerModel.class);

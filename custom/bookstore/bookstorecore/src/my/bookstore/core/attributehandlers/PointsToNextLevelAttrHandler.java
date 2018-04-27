@@ -17,36 +17,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class PointsToNextLevelAttrHandler extends AbstractDynamicAttributeHandler<Integer, CustomerModel>
 {
-    @Autowired
-    private DefaultGenericDao<RewardStatusLevelConfigurationModel> rewardStatusLevelConfigurationDao;
+	@Autowired
+	private DefaultGenericDao<RewardStatusLevelConfigurationModel> rewardStatusLevelConfigurationDao;
 
-    @Override
-    public Integer get(final CustomerModel model)
-    {
-        try
-        {
+	@Override
+	public Integer get(final CustomerModel model)
+	{
+		try
+		{
 
-            final SortParameters sortParam = new SortParameters();
-            sortParam.addSortParameter("threshold", SortOrder.ASCENDING);
-            final List<RewardStatusLevelConfigurationModel> allRewarStatusLevel = rewardStatusLevelConfigurationDao.find(sortParam);
+			final SortParameters sortParam = new SortParameters();
+			sortParam.addSortParameter("threshold", SortOrder.ASCENDING);
+			final List<RewardStatusLevelConfigurationModel> allRewarStatusLevel = rewardStatusLevelConfigurationDao.find(sortParam);
 
-            //now this should be sorted list
-            for (final RewardStatusLevelConfigurationModel rewardStatusLevel : allRewarStatusLevel)
-            {
+			//now this should be sorted list
+			for (final RewardStatusLevelConfigurationModel rewardStatusLevel : allRewarStatusLevel)
+			{
 
-                if (model.getPoints() != null && model.getPoints() < rewardStatusLevel.getThreshold())
-                {
-                    return rewardStatusLevel.getThreshold() - model.getPoints();
-                }
-            }
+				if (model.getPoints() != null && model.getPoints() < rewardStatusLevel.getThreshold())
+				{
+					return rewardStatusLevel.getThreshold() - model.getPoints();
+				}
+			}
 
-        }
-        catch (final IllegalStateException e)
-        {
-            //log error
-        }
-        return null;
-    }
+		}
+		catch (final IllegalStateException e)
+		{
+			//log error
+		}
+		return null;
+	}
 
 
 }
