@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 27-apr-2018 9.59.07                         ---
+ * --- Generated at 28-apr-2018 13.25.42                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.initialdata.constants;

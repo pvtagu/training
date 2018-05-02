@@ -481,13 +481,12 @@
 	</bean>
 
 	<!-- TODO exercise 12.2: Uncomment and add your your code below -->
-	<!-- <bean id="..." class="....">
-    </bean>
+	<bean id="goldCustomerPrepareInterceptor" 
+			class="my.bookstore.core.interceptors.GoldCustomerPrepareInterceptor" />
 
-    <bean id="goldCustomerPrepareInterceptorMapping" class="...">
-        <property name="interceptor" ref="..."/>
-        <property name="typeCode" value="..."/>
+    <bean id="goldCustomerPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="goldCustomerPrepareInterceptor"/>
+        <property name="typeCode" value="Customer"/>
     </bean>
-     -->
 	
 </beans>
