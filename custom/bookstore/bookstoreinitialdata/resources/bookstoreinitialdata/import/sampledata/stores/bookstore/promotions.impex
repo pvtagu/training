@@ -1,0 +1,13 @@
+$storePrefix=bookstore
+$siteUid=$storePrefix
+$defaultPromoGrp=$storePrefixPromoGrp
+
+# Create a promotion group and connect it to your CMS site
+
+INSERT_UPDATE PromotionGroup;Identifier[unique=true];
+;$storePrefixPromoGrp;
+
+INSERT_UPDATE CMSSite;uid[unique=true];defaultPromotionGroup(Identifier)
+;$siteUid;$defaultPromoGrp
+
+
