@@ -74,6 +74,7 @@
 
 		<!-- TODO exercise 14.1: as part of 14.1 you should import the new extension 
 			here -->
+		<extension name="bookstorepayment" />
 
 	</extensions>
 </hybrisconfig>
