@@ -258,6 +258,12 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
+	<!-- TODO exercise 15.2: Complete the bean for CustomerUpdateEventListener -->
+	<bean id="customerUpdateEventListener" class="my.bookstore.core.event.CustomerUpdateEventListener"
+		parent="abstractSiteEventListener">
+		<property name="userService" ref="userService" />
+		<!-- <property ... /> -->
+	</bean>
 
 	<!-- Process resources definition -->
 
@@ -480,10 +486,9 @@
 		<property name="categorySource" ref="bookstoreCategorySource" />
 	</bean>
 
-	<!-- TODO exercise 12.2: Uncomment and add your your code below -->
-	<bean id="goldCustomerPrepareInterceptor" 
-			class="my.bookstore.core.interceptors.GoldCustomerPrepareInterceptor" />
-
+	<bean id="goldCustomerPrepareInterceptor" class="my.bookstore.core.interceptors.GoldCustomerPrepareInterceptor">
+    </bean>
+ 
     <bean id="goldCustomerPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
         <property name="interceptor" ref="goldCustomerPrepareInterceptor"/>
         <property name="typeCode" value="Customer"/>
