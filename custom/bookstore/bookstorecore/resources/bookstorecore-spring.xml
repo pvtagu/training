@@ -262,7 +262,7 @@
 	<bean id="customerUpdateEventListener" class="my.bookstore.core.event.CustomerUpdateEventListener"
 		parent="abstractSiteEventListener">
 		<property name="userService" ref="userService" />
-		<!-- <property ... /> -->
+		<property name="bookstoreCustomerAccountService" ref="bookstoreCustomerAccountService" />
 	</bean>
 
 	<!-- Process resources definition -->

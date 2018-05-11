@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 28-apr-2018 13.25.42                        ---
+ * --- Generated at 11-mag-2018 10.36.10                        ---
  * ----------------------------------------------------------------
  */
 package my.bookstore.facades.constants;

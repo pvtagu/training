@@ -99,12 +99,10 @@
 		<transition name="NOK" to="waitForWarehouseSubprocessEnd" />
 	</action>
 
-	<!-- TODO exercise 15.3: Add action updateCustomerPoints. Create transition OK->sendOrderCompletedNotification -->
-	<!-- 
-	<action ...>
-		<transition ... />
+	<!-- TODO exercise 15.3: Add action updateCustomerPoints. Create transition OK->sendOrderCompletedNotification --> 
+	<action id="updateCustomerPoints" bean="updateCustomerPointsAction">
+		<transition name="OK" to="sendOrderCompletedNotification" />
 	</action>
-	-->
 
 	<action id="sendOrderCompletedNotification" bean="sendOrderCompletedNotificationAction">
 		<transition name="OK" to="success" />

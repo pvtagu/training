@@ -132,6 +132,10 @@
 	</bean>
 
 	<!-- TODO exercise 15.1: define updateCustomerPointsAction bean. -->
-	
+	<bean id="updateCustomerPointsAction"
+		class="my.bookstore.fulfilmentprocess.actions.order.UpdateCustomerPointsAction"
+		parent="abstractAction">
+		<property name="eventService" ref="eventService" />
+	</bean>
 
 </beans>

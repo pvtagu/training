@@ -1,12 +1,15 @@
 package my.bookstore.core.event;
 
 import de.hybris.platform.commerceservices.event.AbstractSiteEventListener;
+import de.hybris.platform.core.model.order.OrderModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import my.bookstore.core.services.BookstoreCustomerAccountService;
 import my.bookstore.fulfilmentprocess.events.CustomerUpdateEvent;
-
 
 
 public class CustomerUpdateEventListener extends AbstractSiteEventListener<CustomerUpdateEvent>
@@ -14,7 +17,7 @@ public class CustomerUpdateEventListener extends AbstractSiteEventListener<Custo
 
 	private UserService userService;
 
-	private BookstoreCustomerAccountService bookstoreCustomerService;
+	private BookstoreCustomerAccountService bookstoreCustomerAccountService;
 
 	/*
 	 * (non-Javadoc)
@@ -27,15 +30,16 @@ public class CustomerUpdateEventListener extends AbstractSiteEventListener<Custo
 	protected void onSiteEvent(final CustomerUpdateEvent event)
 	{
 		// TODO exercise 15.2: write the implementation as explained in the instructions.
-		
+		CustomerModel customer = event.getCustomer();
+		OrderModel order = event.getProcess().getOrder();
+		bookstoreCustomerAccountService.updateRewardStatusPoints(customer, order);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see
-	 * de.hybris.platform.commerceservices.event.AbstractSiteEventListener#shouldHandleEvent(de.hybris.platform.servicelayer
-	 * .event.events.AbstractEvent)
+	 * @see de.hybris.platform.commerceservices.event.AbstractSiteEventListener#shouldHandleEvent(de.hybris.platform.
+	 * servicelayer .event.events.AbstractEvent)
 	 */
 	@Override
 	protected boolean shouldHandleEvent(final CustomerUpdateEvent event)
@@ -52,18 +56,20 @@ public class CustomerUpdateEventListener extends AbstractSiteEventListener<Custo
 	 * @param userService
 	 *           the userService to set
 	 */
+	@Required
 	public void setUserService(final UserService userService)
 	{
 		this.userService = userService;
 	}
 
 	/**
-	 * @param bookstoreCustomerService
+	 * @param bookstoreCustomerAccountService
 	 *           the bookstoreCustomerService to set
 	 */
-	public void setBookstoreCustomerService(final BookstoreCustomerAccountService bookstoreCustomerService)
+	@Required
+	public void setBookstoreCustomerAccountService(final BookstoreCustomerAccountService bookstoreCustomerAccountService)
 	{
-		this.bookstoreCustomerService = bookstoreCustomerService;
+		this.bookstoreCustomerAccountService = bookstoreCustomerAccountService;
 	}
 
 }

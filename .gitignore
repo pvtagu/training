@@ -44,3 +44,21 @@ custom/bookstore/bookstore.iml
 custom/bookstore/bookstorecore/eclipsebin/
 
 config/hybris4intellij.properties
+
+custom/bookstore/bookstorecockpits/gensrc/**
+custom/bookstore/bookstorecockpits/gensrc/ 
+custom/bookstore/bookstorecore/gensrc/**
+custom/bookstore/bookstorecore/gensrc/ 
+custom/bookstore/bookstorefacades/gensrc/**
+custom/bookstore/bookstorefacades/gensrc/ 
+custom/bookstore/bookstorefulfilmentprocess/build.xml
+custom/bookstore/bookstorefulfilmentprocess/classes/**
+custom/bookstore/bookstorefulfilmentprocess/classes/ 
+custom/bookstore/bookstorefulfilmentprocess/gensrc/**
+custom/bookstore/bookstorefulfilmentprocess/gensrc/  
+custom/bookstore/bookstoreinitialdata/build.xml 
+custom/bookstore/bookstoreinitialdata/gensrc/**
+custom/bookstore/bookstoreinitialdata/gensrc/
+custom/bookstorepayment/gensrc/**
+custom/bookstorepayment/gensrc/ 
+ 
