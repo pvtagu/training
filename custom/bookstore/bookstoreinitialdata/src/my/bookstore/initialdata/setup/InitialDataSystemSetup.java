@@ -32,7 +32,6 @@ import java.util.List;
 
 import my.bookstore.initialdata.constants.BookstoreInitialDataConstants;
 
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -82,13 +81,15 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	 * @param context
 	 *           the context provides the selected parameters and values
 	 */
-	/*
-	Those are project data and SystemSetup annotation should have type=Type.PROJECT, but just for training purpose we have set type = Type.ESSENTIAL so that data are imported during ant updatesystem
-	 */
 	@SystemSetup(type = Type.PROJECT, process = Process.ALL)
 	public void createProjectData(final SystemSetupContext context)
 	{
-		//There should be some change
+		//Exercise 12
+		importImpexFile(
+				context,
+				"/bookstoreinitialdata/import/sampledata/productCatalogs/bookstoreProductCatalog/pricegroups.impex");
+		//Exercise 17
+		importImpexFile(context, "/bookstoreinitialdata/import/sampledata/stores/bookstore/approval-workflow.impex");
 
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
@@ -103,10 +104,9 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 
 		getSampleDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
-		
+
 		//import rentals after catalog sync
 		importImpexFile(context, "/bookstoreinitialdata/import/sampledata/productCatalogs/bookstoreProductCatalog/rentals.impex");
-
 	}
 
 	public CoreDataImportService getCoreDataImportService()
