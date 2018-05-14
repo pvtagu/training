@@ -258,7 +258,6 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	<!-- TODO exercise 15.2: Complete the bean for CustomerUpdateEventListener -->
 	<bean id="customerUpdateEventListener" class="my.bookstore.core.event.CustomerUpdateEventListener"
 		parent="abstractSiteEventListener">
 		<property name="userService" ref="userService" />
@@ -493,5 +492,21 @@
         <property name="interceptor" ref="goldCustomerPrepareInterceptor"/>
         <property name="typeCode" value="Customer"/>
     </bean>
-	
+	    
+    <alias alias="bookstoreEmailService" name="defaultbookstoreEmailService" />
+	<bean id="defaultbookstoreEmailService"
+		class="my.bookstore.core.services.impl.DefaultBookstoreEmailService">
+		<property name="emailService" ref="emailService" />
+		<property name="sendEmails" value="false"></property>
+		<property name="customerDao" ref="customerDao"/>
+	</bean>
+    
+	<!-- TODO exercise 16.1 : define the job bean -->
+	<bean id="bookstoreEmailJob"
+		class="my.bookstore.core.jobs.BookstoreEmailJob"
+		parent="abstractJobPerformable">
+		<property name="bookstoreEmailService" ref="bookstoreEmailService" />
+		<property name="rentalDao" ref="rentalDao" />
+	</bean>
+
 </beans>
